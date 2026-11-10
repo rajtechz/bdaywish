@@ -2,21 +2,25 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, Sparkles, Gift, Eye } from "lucide-react";
+import { Heart, Sparkles } from "lucide-react";
 import { soundManager } from "@/lib/soundEffects";
 import { triggerRoyalConfetti, triggerHeartConfetti, triggerFireworks } from "@/lib/confetti";
 
 interface CinematicCurtainsProps {
+  isTransitioning?: boolean;
   onCurtainOpen?: () => void;
 }
 
-export default function CinematicCurtains({ onCurtainOpen }: CinematicCurtainsProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isFinished, setIsFinished] = useState(false);
+export default function CinematicCurtains({
+  isTransitioning = false,
+  onCurtainOpen,
+}: CinematicCurtainsProps) {
+  const [isInitialOpen, setIsInitialOpen] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
 
-  // Prevent background scrolling while curtains are closed
+  // Prevent background scrolling while initial curtains are closed
   useEffect(() => {
-    if (!isOpen) {
+    if (!hasStarted) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -24,56 +28,54 @@ export default function CinematicCurtains({ onCurtainOpen }: CinematicCurtainsPr
     return () => {
       document.body.style.overflow = "";
     };
-  }, [isOpen]);
+  }, [hasStarted]);
 
-  const handleOpenCurtains = () => {
-    if (isOpen) return;
-    setIsOpen(true);
+  const handleOpenInitialCurtains = () => {
+    if (hasStarted) return;
+    setHasStarted(true);
+    setIsInitialOpen(true);
 
-    // 1. Play celestial fanfare chime
     soundManager.playGiftFanfare();
-
-    // 2. Start background music on user gesture
     soundManager.startBackgroundMusic();
 
-    // 3. Release confetti & fireworks burst
     triggerRoyalConfetti();
-    setTimeout(() => {
-      triggerHeartConfetti();
-    }, 400);
-    setTimeout(() => {
-      triggerFireworks(3500);
-    }, 800);
+    setTimeout(() => triggerHeartConfetti(), 350);
+    setTimeout(() => triggerFireworks(3000), 700);
 
     onCurtainOpen?.();
-
-    // 4. Clean up curtains after animation completes (~2.4s)
-    setTimeout(() => {
-      setIsFinished(true);
-    }, 2400);
   };
 
-  if (isFinished) return null;
+  // Determine curtain animation position:
+  // Closed when !hasStarted OR when isTransitioning is true
+  const isCurtainClosed = !hasStarted || isTransitioning;
 
   return (
-    <div className="fixed inset-0 z-50 pointer-events-auto select-none overflow-hidden">
-      {/* Golden Light Burst Beam Between the Splitting Curtains */}
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, scaleY: 0 }}
-          animate={{ opacity: [0, 1, 0.9, 0], scaleY: [0, 1.8, 3] }}
-          transition={{ duration: 1.8, ease: "easeOut" }}
-          className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-24 bg-gradient-to-r from-transparent via-amber-200 to-transparent blur-2xl z-30 pointer-events-none"
-        />
-      )}
+    <div
+      className={`fixed inset-0 z-50 select-none overflow-hidden transition-all duration-300 ${
+        hasStarted && !isTransitioning ? "pointer-events-none" : "pointer-events-auto"
+      }`}
+    >
+      {/* Golden Light Burst Beam on split */}
+      <AnimatePresence>
+        {!isCurtainClosed && (
+          <motion.div
+            key="light-burst"
+            initial={{ opacity: 0, scaleY: 0 }}
+            animate={{ opacity: [0, 1, 0.9, 0], scaleY: [0, 1.8, 3] }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.6, ease: "easeOut" }}
+            className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-24 bg-gradient-to-r from-transparent via-amber-200 to-transparent blur-2xl z-30 pointer-events-none"
+          />
+        )}
+      </AnimatePresence>
 
       {/* TOP CURTAIN PANEL (Slides Upwards) */}
       <motion.div
         initial={{ y: 0 }}
-        animate={{ y: isOpen ? "-100%" : 0 }}
+        animate={{ y: isCurtainClosed ? "0%" : "-100%" }}
         transition={{
-          duration: 2.2,
-          ease: [0.76, 0, 0.24, 1], // Cinematic smooth easing
+          duration: hasStarted ? 0.75 : 2.0,
+          ease: [0.76, 0, 0.24, 1],
         }}
         className="absolute top-0 inset-x-0 h-[50.5vh] z-20 overflow-hidden shadow-2xl"
         style={{
@@ -103,9 +105,9 @@ export default function CinematicCurtains({ onCurtainOpen }: CinematicCurtainsPr
       {/* BOTTOM CURTAIN PANEL (Slides Downwards) */}
       <motion.div
         initial={{ y: 0 }}
-        animate={{ y: isOpen ? "100%" : 0 }}
+        animate={{ y: isCurtainClosed ? "0%" : "100%" }}
         transition={{
-          duration: 2.2,
+          duration: hasStarted ? 0.75 : 2.0,
           ease: [0.76, 0, 0.24, 1],
         }}
         className="absolute bottom-0 inset-x-0 h-[50.5vh] z-20 overflow-hidden shadow-2xl"
@@ -133,14 +135,14 @@ export default function CinematicCurtains({ onCurtainOpen }: CinematicCurtainsPr
         <div className="absolute bottom-8 right-1/4 text-white/40 text-lg animate-bounce" style={{ animationDuration: "3.5s" }}>💖</div>
       </motion.div>
 
-      {/* CENTER CALLOUT CARD (Fades Out During Split) */}
+      {/* INITIAL OPENING CALLOUT CARD (Matching uploaded screenshot media_1794296221681_add868fb.jpg) */}
       <AnimatePresence>
-        {!isOpen && (
+        {!hasStarted && (
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.15, filter: "blur(8px)" }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
             className="absolute inset-0 z-30 flex flex-col items-center justify-center p-4 text-center pointer-events-none"
           >
             <div className="pointer-events-auto glass-card-pastel rounded-3xl p-8 sm:p-10 max-w-md w-full shadow-2xl border-2 border-white/95 flex flex-col items-center bg-white/90 backdrop-blur-2xl">
@@ -151,11 +153,10 @@ export default function CinematicCurtains({ onCurtainOpen }: CinematicCurtainsPr
                 <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 animate-pulse" />
               </div>
 
-              {/* “HEY ALLEN! ❤️” */}
-              <h1 className="text-4xl sm:text-5xl font-serif font-black tracking-tight mb-2">
-                <span className="text-magenta-gradient drop-shadow-sm block">
-                  HEY ALLEN! ❤️
-                </span>
+              {/* “HEY ALLEN! 💜” */}
+              <h1 className="text-4xl sm:text-5xl font-serif font-black tracking-tight mb-2 flex items-center justify-center gap-2">
+                <span className="text-magenta-gradient drop-shadow-sm">HEY ALLEN!</span>
+                <span className="text-purple-600">💜</span>
               </h1>
 
               {/* “Someone has prepared a little surprise for you...” */}
@@ -163,9 +164,9 @@ export default function CinematicCurtains({ onCurtainOpen }: CinematicCurtainsPr
                 Someone has prepared a little surprise for you…
               </p>
 
-              {/* Button: “OPEN YOUR SURPRISE 👀” */}
+              {/* Button: “OPEN YOUR SURPRISE 👀 ✨” */}
               <motion.button
-                onClick={handleOpenCurtains}
+                onClick={handleOpenInitialCurtains}
                 whileHover={{ scale: 1.06, boxShadow: "0 10px 30px rgba(225,29,72,0.3)" }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 sm:px-10 py-4 rounded-full font-bold text-base sm:text-lg tracking-wider text-white bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 shadow-xl shadow-pink-300/60 border border-white/80 flex items-center gap-2.5 transition-all group"
