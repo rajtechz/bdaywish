@@ -1,14 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Great+Vibes&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Dancing+Script:wght@600;700&family=Marck+Script&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Satisfy&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-playfair: 'Playfair Display', Georgia, serif;
-  --font-outfit: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-script: 'Great Vibes', 'Dancing Script', cursive;
-  --font-handwriting: 'Dancing Script', cursive;
+  --font-script: 'Dancing Script', 'Caveat', 'Satisfy', cursive;
+  --font-subscript: 'Caveat', 'Dancing Script', cursive;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Outfit', system-ui, sans-serif;
 }
 
 * {
@@ -18,7 +18,7 @@
 
 html {
   scroll-behavior: smooth;
-  font-family: var(--font-outfit);
+  font-family: var(--font-sans);
   background-color: #ffd8e4 !important;
   color: #4a0e2e;
 }
@@ -33,32 +33,23 @@ body {
   padding: 0;
 }
 
-/* Glassmorphism Aesthetic Cards */
-.glass-pill {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 8px 30px rgba(236, 72, 153, 0.12);
+/* Calligraphy & Script Typography Utility Classes matching Screenshot */
+.font-brush {
+  font-family: var(--font-script);
 }
 
-.glass-player {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.95);
-  box-shadow: 0 15px 40px rgba(219, 39, 119, 0.15), 0 2px 10px rgba(0, 0, 0, 0.03);
+.font-sub-script {
+  font-family: var(--font-subscript);
 }
 
-.glass-card-pastel {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.95);
-  box-shadow: 0 20px 50px rgba(225, 29, 72, 0.1), 0 0 30px rgba(244, 114, 182, 0.15);
+/* Vibrant Rose-to-Purple Calligraphy Gradient matching Screenshot */
+.text-calligraphy-gradient {
+  background: linear-gradient(135deg, #e11d48 0%, #db2777 35%, #c026d3 70%, #9333ea 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 3px 10px rgba(225, 29, 72, 0.22));
 }
 
-/* Vibrant Pink & Magenta Calligraphy Gradient */
 .text-magenta-gradient {
   background: linear-gradient(135deg, #e11d48 0%, #db2777 40%, #c026d3 70%, #9333ea 100%);
   -webkit-background-clip: text;
@@ -66,10 +57,29 @@ body {
   filter: drop-shadow(0 2px 8px rgba(219, 39, 119, 0.25));
 }
 
-.text-gold-gradient {
-  background: linear-gradient(135deg, #b45309 0%, #d97706 40%, #f59e0b 80%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Glassmorphism Aesthetic Cards */
+.glass-pill {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 30px rgba(236, 72, 153, 0.12);
+}
+
+.glass-player {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 15px 40px rgba(219, 39, 119, 0.15), 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.glass-card-pastel {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 20px 50px rgba(225, 29, 72, 0.1), 0 0 30px rgba(244, 114, 182, 0.15);
 }
 
 /* 3D Flip Card Styles */

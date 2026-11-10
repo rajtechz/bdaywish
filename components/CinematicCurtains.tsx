@@ -15,7 +15,6 @@ export default function CinematicCurtains({
   isTransitioning = false,
   onCurtainOpen,
 }: CinematicCurtainsProps) {
-  const [isInitialOpen, setIsInitialOpen] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
 
   // Prevent background scrolling while initial curtains are closed
@@ -33,7 +32,6 @@ export default function CinematicCurtains({
   const handleOpenInitialCurtains = () => {
     if (hasStarted) return;
     setHasStarted(true);
-    setIsInitialOpen(true);
 
     soundManager.playGiftFanfare();
     soundManager.startBackgroundMusic();
@@ -45,8 +43,6 @@ export default function CinematicCurtains({
     onCurtainOpen?.();
   };
 
-  // Determine curtain animation position:
-  // Closed when !hasStarted OR when isTransitioning is true
   const isCurtainClosed = !hasStarted || isTransitioning;
 
   return (
@@ -135,7 +131,7 @@ export default function CinematicCurtains({
         <div className="absolute bottom-8 right-1/4 text-white/40 text-lg animate-bounce" style={{ animationDuration: "3.5s" }}>💖</div>
       </motion.div>
 
-      {/* INITIAL OPENING CALLOUT CARD (Matching uploaded screenshot media_1794296221681_add868fb.jpg) */}
+      {/* INITIAL OPENING CALLOUT CARD (Matching Reference Screenshot Font) */}
       <AnimatePresence>
         {!hasStarted && (
           <motion.div
@@ -147,20 +143,20 @@ export default function CinematicCurtains({
           >
             <div className="pointer-events-auto glass-card-pastel rounded-3xl p-8 sm:p-10 max-w-md w-full shadow-2xl border-2 border-white/95 flex flex-col items-center bg-white/90 backdrop-blur-2xl">
               {/* Badge */}
-              <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-100/90 text-pink-700 text-xs font-semibold uppercase tracking-widest mb-4 shadow-sm">
+              <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-100/90 text-pink-700 text-xs font-semibold uppercase tracking-widest mb-4 shadow-sm font-sans">
                 <Sparkles className="w-3.5 h-3.5 text-pink-500 animate-spin" style={{ animationDuration: "6s" }} />
                 <span>A Surprise Is Waiting</span>
                 <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 animate-pulse" />
               </div>
 
-              {/* “HEY ALLEN! 💜” */}
-              <h1 className="text-4xl sm:text-5xl font-serif font-black tracking-tight mb-2 flex items-center justify-center gap-2">
-                <span className="text-magenta-gradient drop-shadow-sm">HEY ALLEN!</span>
+              {/* “Hey Allen! 💜” in exact screenshot calligraphy brush font */}
+              <h1 className="text-5xl sm:text-6xl font-brush font-bold tracking-tight mb-2 flex items-center justify-center gap-2">
+                <span className="text-calligraphy-gradient">Hey Allen!</span>
                 <span className="text-purple-600">💜</span>
               </h1>
 
-              {/* “Someone has prepared a little surprise for you...” */}
-              <p className="text-sm sm:text-base font-serif italic text-pink-900/80 mb-6 max-w-xs leading-relaxed">
+              {/* “Someone has prepared a little surprise for you...” in cursive font */}
+              <p className="text-xl sm:text-2xl font-sub-script text-pink-900/90 mb-6 max-w-xs leading-relaxed">
                 Someone has prepared a little surprise for you…
               </p>
 
@@ -169,13 +165,13 @@ export default function CinematicCurtains({
                 onClick={handleOpenInitialCurtains}
                 whileHover={{ scale: 1.06, boxShadow: "0 10px 30px rgba(225,29,72,0.3)" }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 sm:px-10 py-4 rounded-full font-bold text-base sm:text-lg tracking-wider text-white bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 shadow-xl shadow-pink-300/60 border border-white/80 flex items-center gap-2.5 transition-all group"
+                className="px-8 sm:px-10 py-4 rounded-full font-bold text-base sm:text-lg tracking-wider text-white bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 shadow-xl shadow-pink-300/60 border border-white/80 flex items-center gap-2.5 transition-all group font-sans"
               >
                 <span>OPEN YOUR SURPRISE 👀</span>
                 <Sparkles className="w-5 h-5 text-yellow-200 group-hover:rotate-12 transition-transform" />
               </motion.button>
 
-              <span className="text-[11px] text-pink-500/70 tracking-wider uppercase mt-4">
+              <span className="text-[11px] text-pink-500/70 tracking-wider uppercase mt-4 font-sans">
                 Tap to open the curtains ✨
               </span>
             </div>

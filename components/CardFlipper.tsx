@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Heart, Sparkles, RotateCw } from "lucide-react";
+import { Sparkles, RotateCw } from "lucide-react";
 import { soundManager } from "@/lib/soundEffects";
 
 export default function CardFlipper() {
@@ -27,7 +27,7 @@ export default function CardFlipper() {
         {/* FRONT SIDE (Envelope / Sealed Letter) */}
         <div className="absolute inset-0 w-full h-full rounded-3xl p-6 sm:p-8 glass-card-pastel border-2 border-pink-200/80 shadow-xl flex flex-col items-center justify-between backface-hidden bg-gradient-to-br from-white/90 via-pink-50/80 to-rose-100/70">
           {/* Header Stamp */}
-          <div className="w-full flex items-center justify-between text-xs text-pink-500 font-semibold uppercase tracking-wider">
+          <div className="w-full flex items-center justify-between text-xs text-pink-500 font-semibold uppercase tracking-wider font-sans">
             <span className="flex items-center gap-1">
               <Sparkles className="w-3.5 h-3.5 text-pink-500" />
               <span>Special Delivery</span>
@@ -44,7 +44,7 @@ export default function CardFlipper() {
               whileHover={{ scale: 1.08 }}
               className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-tr from-rose-500 via-pink-500 to-rose-600 shadow-lg shadow-pink-400/40 border-4 border-white flex items-center justify-center text-white mb-4 relative"
             >
-              <span className="font-serif text-2xl sm:text-3xl font-black tracking-widest">
+              <span className="font-brush text-3xl sm:text-4xl font-bold tracking-widest">
                 A
               </span>
               <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-amber-400 text-amber-900 flex items-center justify-center text-xs shadow">
@@ -52,21 +52,21 @@ export default function CardFlipper() {
               </div>
             </motion.div>
 
-            <span className="text-xs uppercase tracking-widest text-pink-600/80 font-semibold mb-1">
+            <span className="text-sm uppercase tracking-widest text-pink-600/80 font-semibold mb-1 font-sans">
               To My Partner in Crime
             </span>
 
-            <h3 className="text-2xl sm:text-3xl font-serif font-bold text-magenta-gradient mb-2">
-              For Allen ❤️
+            <h3 className="text-3xl sm:text-4xl font-brush font-bold text-calligraphy-gradient mb-2">
+              For Allen.. 💜
             </h3>
 
-            <p className="text-xs sm:text-sm text-pink-900/70 max-w-xs font-serif italic">
+            <p className="text-lg sm:text-xl text-pink-900/80 max-w-xs font-sub-script">
               A little letter filled with big love and zero boring words.
             </p>
           </div>
 
           {/* Footer instruction */}
-          <div className="flex items-center gap-2 text-xs text-pink-600 font-medium">
+          <div className="flex items-center gap-2 text-xs text-pink-600 font-medium font-sans">
             <RotateCw className="w-3.5 h-3.5 animate-spin" style={{ animationDuration: "10s" }} />
             <span>Click to flip open &amp; read</span>
           </div>
@@ -79,11 +79,11 @@ export default function CardFlipper() {
             <div className="flex items-center gap-2">
               <span className="text-lg">💌</span>
               <div>
-                <h4 className="text-base sm:text-lg font-serif font-bold text-pink-800">
+                <h4 className="text-2xl sm:text-3xl font-brush font-bold text-pink-800">
                   Dear Allen,
                 </h4>
-                <span className="text-[10px] text-pink-500/80 tracking-wider uppercase block">
-                  My Best . My Favourite Idiot. 😂
+                <span className="text-[10px] text-pink-500/80 tracking-wider uppercase block font-sans">
+                  My Best Friend. My Favourite Idiot. 😂
                 </span>
               </div>
             </div>
@@ -92,7 +92,7 @@ export default function CardFlipper() {
                 e.stopPropagation();
                 handleFlip();
               }}
-              className="text-[11px] text-pink-600 hover:text-pink-800 bg-pink-100 px-2.5 py-1 rounded-full font-medium"
+              className="text-[11px] text-pink-600 hover:text-pink-800 bg-pink-100 px-2.5 py-1 rounded-full font-medium font-sans"
             >
               Flip Back ↩
             </button>
@@ -101,7 +101,7 @@ export default function CardFlipper() {
           {/* Letter Body */}
           <div className="space-y-3 font-serif text-pink-950/85 text-xs sm:text-sm leading-relaxed my-auto pt-2">
             <p>
-              First of all, you are not just a  — you are <span className="font-bold text-pink-700">my absolute best </span>, my unpaid therapist, and my favourite human to laugh with until our stomachs hurt.
+              First of all, you are not just a friend — you are <span className="font-bold text-pink-700">my absolute best friend</span>, my unpaid therapist, and my favourite human to laugh with until our stomachs hurt.
             </p>
             <p>
               Thank you for understanding my weird humor, supporting my chaotic plans, and always having my back through thick and thin.
@@ -113,9 +113,9 @@ export default function CardFlipper() {
 
           {/* Signoff */}
           <div className="border-t border-pink-200/60 pt-3 flex items-center justify-between">
-            <span className="text-xs font-serif italic text-pink-700">Forever &amp; Always,</span>
-            <span className="text-sm font-serif font-bold text-magenta-gradient">
-              Your Best  ❤️
+            <span className="text-lg sm:text-xl font-sub-script text-pink-700">Forever &amp; Always,</span>
+            <span className="text-2xl sm:text-3xl font-brush font-bold text-calligraphy-gradient">
+              Your Best Friend ❤️
             </span>
           </div>
         </div>

@@ -6,7 +6,7 @@ import { soundManager } from "@/lib/soundEffects";
 
 export default function AestheticMusicPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [progress, setProgress] = useState(38);
+  const [progress, setProgress] = useState(25);
   const [volume, setVolume] = useState(70);
   const [isMuted, setIsMuted] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
@@ -71,13 +71,13 @@ export default function AestheticMusicPlayer() {
           </button>
         </div>
 
-        {/* Track Title: All of Me */}
+        {/* Track Title: Happy Birthday */}
         <div className="text-left mb-2">
-          <h4 className="text-xs sm:text-sm font-semibold text-neutral-800 truncate font-serif italic">
-            All of Me
+          <h4 className="text-xs sm:text-sm font-semibold text-neutral-800 truncate font-script text-base">
+            Happy Birthday 🎂
           </h4>
-          <p className="text-[10px] text-pink-500/80 truncate">
-            {isPlaying ? "Playing for Allen..." : "Tap play to start"}
+          <p className="text-[10px] text-pink-500/80 truncate font-sans">
+            {isPlaying ? "Playing Birthday Song..." : "Tap play to start"}
           </p>
         </div>
 

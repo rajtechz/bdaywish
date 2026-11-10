@@ -1,5 +1,5 @@
-// Web Audio API Synthesizer for magical chimes, fanfare, candle blow, and birthday chimes
-// Works on iOS Safari, Android Chrome, and all desktop browsers without requiring external assets
+// Web Audio API Synthesizer for cheerful acoustic birthday chimes, fanfares, and music
+// Works seamlessly on iOS Safari, Android Chrome, and all desktop browsers without external files
 
 class SoundManager {
   private ctx: AudioContext | null = null;
@@ -11,7 +11,9 @@ class SoundManager {
   private initCtx() {
     if (typeof window === "undefined") return null;
     if (!this.ctx) {
-      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+      const AudioCtx =
+        window.AudioContext ||
+        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
       if (AudioCtx) {
         this.ctx = new AudioCtx();
       }
@@ -37,7 +39,7 @@ class SoundManager {
     return this.musicPlaying;
   }
 
-  // Magical celestial chime (for gift click, wish click, sparkle)
+  // Celestial sparkle chime
   public playCelestialChime() {
     if (this.isMuted) return;
     const ctx = this.initCtx();
@@ -51,33 +53,32 @@ class SoundManager {
       const gain = ctx.createGain();
 
       osc.type = "sine";
-      osc.frequency.setValueAtTime(freq, now + idx * 0.07);
+      osc.frequency.setValueAtTime(freq, now + idx * 0.06);
 
-      gain.gain.setValueAtTime(0.001, now + idx * 0.07);
-      gain.gain.exponentialRampToValueAtTime(0.2, now + idx * 0.07 + 0.02);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.07 + 1.2);
+      gain.gain.setValueAtTime(0.001, now + idx * 0.06);
+      gain.gain.exponentialRampToValueAtTime(0.18, now + idx * 0.06 + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.06 + 1.2);
 
       osc.connect(gain);
       gain.connect(ctx.destination);
 
-      osc.start(now + idx * 0.07);
-      osc.stop(now + idx * 0.07 + 1.3);
+      osc.start(now + idx * 0.06);
+      osc.stop(now + idx * 0.06 + 1.3);
     });
   }
 
-  // Triumphant magical fanfare when gift opens
+  // Fanfare when opening curtains or celebration
   public playGiftFanfare() {
     if (this.isMuted) return;
     const ctx = this.initCtx();
     if (!ctx) return;
 
     const now = ctx.currentTime;
-    // Chords: C major -> F major -> G major -> High C sparkle
     const chordSeq = [
-      { t: 0.0, freqs: [261.63, 329.63, 392.0], d: 0.25 },
-      { t: 0.25, freqs: [349.23, 440.0, 523.25], d: 0.25 },
-      { t: 0.5, freqs: [392.0, 493.88, 587.33], d: 0.35 },
-      { t: 0.9, freqs: [523.25, 659.25, 783.99, 1046.5], d: 1.5 },
+      { t: 0.0, freqs: [261.63, 329.63, 392.0], d: 0.22 },
+      { t: 0.22, freqs: [349.23, 440.0, 523.25], d: 0.22 },
+      { t: 0.44, freqs: [392.0, 493.88, 587.33], d: 0.3 },
+      { t: 0.78, freqs: [523.25, 659.25, 783.99, 1046.5], d: 1.4 },
     ];
 
     chordSeq.forEach((step) => {
@@ -89,7 +90,7 @@ class SoundManager {
         osc.frequency.setValueAtTime(freq, now + step.t);
 
         gain.gain.setValueAtTime(0.001, now + step.t);
-        gain.gain.exponentialRampToValueAtTime(0.15, now + step.t + 0.04);
+        gain.gain.exponentialRampToValueAtTime(0.14, now + step.t + 0.03);
         gain.gain.exponentialRampToValueAtTime(0.0001, now + step.t + step.d);
 
         osc.connect(gain);
@@ -99,38 +100,16 @@ class SoundManager {
         osc.stop(now + step.t + step.d + 0.1);
       });
     });
-
-    // Sparkle trail
-    for (let i = 0; i < 10; i++) {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      const f = 1200 + Math.random() * 1500;
-      const startTime = now + 0.9 + i * 0.08;
-
-      osc.type = "sine";
-      osc.frequency.setValueAtTime(f, startTime);
-
-      gain.gain.setValueAtTime(0.08, startTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, startTime + 0.3);
-
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-
-      osc.start(startTime);
-      osc.stop(startTime + 0.35);
-    }
   }
 
-  // Wish blow candle sound
+  // Candle blow swoosh
   public playCandleBlow() {
     if (this.isMuted) return;
     const ctx = this.initCtx();
     if (!ctx) return;
 
     const now = ctx.currentTime;
-
-    // Breath swoosh (filtered noise simulation)
-    const bufferSize = ctx.sampleRate * 0.6;
+    const bufferSize = ctx.sampleRate * 0.5;
     const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
     const data = buffer.getChannelData(0);
     for (let i = 0; i < bufferSize; i++) {
@@ -142,12 +121,12 @@ class SoundManager {
 
     const filter = ctx.createBiquadFilter();
     filter.type = "lowpass";
-    filter.frequency.setValueAtTime(400, now);
-    filter.frequency.exponentialRampToValueAtTime(150, now + 0.5);
+    filter.frequency.setValueAtTime(450, now);
+    filter.frequency.exponentialRampToValueAtTime(120, now + 0.45);
 
     const gain = ctx.createGain();
     gain.gain.setValueAtTime(0.18, now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
 
     noise.connect(filter);
     filter.connect(gain);
@@ -156,10 +135,9 @@ class SoundManager {
     noise.start(now);
     noise.stop(now + 0.5);
 
-    // Followed by sweet magical bell chime
     setTimeout(() => {
       this.playCelestialChime();
-    }, 400);
+    }, 380);
   }
 
   // Pop / firework sound
@@ -186,9 +164,7 @@ class SoundManager {
     osc.stop(now + 0.3);
   }
 
-  // Play background music:
-  // First tries local audio `/music/birthday-music.mp3`.
-  // If it fails or is absent, seamlessly plays a soft acoustic music-box synthesized birthday loop!
+  // Play background birthday song
   public startBackgroundMusic(onStateChange?: (playing: boolean) => void) {
     if (this.isMuted) return;
     this.musicPlaying = true;
@@ -196,27 +172,39 @@ class SoundManager {
 
     if (typeof window === "undefined") return;
 
-    // Check if background audio is already active
     if (this.bgAudio) {
       this.bgAudio.play().catch(() => {
-        this.startSynthMelody();
+        this.startSynthBirthdaySong();
       });
       return;
     }
 
-    const audio = new Audio("/music/birthday-music.mp3");
-    audio.loop = true;
-    audio.volume = 0.5;
+    // Try local audio assets
+    const audioCandidates = [
+      "/music/happy-birthday.mp3",
+      "/music/birthday-song.mp3",
+      "/music/birthday-music.mp3",
+    ];
 
-    audio
-      .play()
-      .then(() => {
-        this.bgAudio = audio;
-      })
-      .catch(() => {
-        // Fallback to warm music-box synthesizer loop
-        this.startSynthMelody();
-      });
+    const tryLoad = (idx: number) => {
+      if (idx >= audioCandidates.length) {
+        this.startSynthBirthdaySong();
+        return;
+      }
+      const audio = new Audio(audioCandidates[idx]);
+      audio.loop = true;
+      audio.volume = 0.6;
+      audio
+        .play()
+        .then(() => {
+          this.bgAudio = audio;
+        })
+        .catch(() => {
+          tryLoad(idx + 1);
+        });
+    };
+
+    tryLoad(0);
   }
 
   public stopBackgroundMusic(onStateChange?: (playing: boolean) => void) {
@@ -232,35 +220,62 @@ class SoundManager {
     }
   }
 
-  // Music-box style dreamy birthday theme loop
-  private startSynthMelody() {
+  // Cheerful, warm music-box Happy Birthday Song loop
+  private startSynthBirthdaySong() {
     if (!this.musicPlaying || this.isMuted) return;
     const ctx = this.initCtx();
     if (!ctx) return;
 
-    // "Happy Birthday To You" in C Major
-    // C4, C4, D4, C4, F4, E4 ...
-    const melody: [number, number][] = [
-      [261.63, 0.4], [261.63, 0.4], [293.66, 0.8], [261.63, 0.8], [349.23, 0.8], [329.63, 1.4],
-      [261.63, 0.4], [261.63, 0.4], [293.66, 0.8], [261.63, 0.8], [392.00, 0.8], [349.23, 1.4],
-      [261.63, 0.4], [261.63, 0.4], [523.25, 0.8], [440.00, 0.8], [349.23, 0.8], [329.63, 0.8], [293.66, 1.2],
-      [466.16, 0.4], [466.16, 0.4], [440.00, 0.8], [349.23, 0.8], [392.00, 0.8], [349.23, 1.6],
+    // "Happy Birthday To You" Notes & Chords in F Major
+    const melody: [number, number, number?][] = [
+      // Hap-py Birth-day to you
+      [261.63, 0.35, 130.81],
+      [261.63, 0.35, 130.81],
+      [293.66, 0.7, 146.83],
+      [261.63, 0.7, 130.81],
+      [349.23, 0.7, 174.61],
+      [329.63, 1.2, 164.81],
+
+      // Hap-py Birth-day to you
+      [261.63, 0.35, 130.81],
+      [261.63, 0.35, 130.81],
+      [293.66, 0.7, 146.83],
+      [261.63, 0.7, 130.81],
+      [392.00, 0.7, 196.00],
+      [349.23, 1.2, 174.61],
+
+      // Hap-py Birth-day dear Al-len
+      [261.63, 0.35, 130.81],
+      [261.63, 0.35, 130.81],
+      [523.25, 0.7, 261.63],
+      [440.00, 0.7, 220.00],
+      [349.23, 0.7, 174.61],
+      [329.63, 0.7, 164.81],
+      [293.66, 1.1, 146.83],
+
+      // Hap-py Birth-day to you
+      [466.16, 0.35, 233.08],
+      [466.16, 0.35, 233.08],
+      [440.00, 0.7, 220.00],
+      [349.23, 0.7, 174.61],
+      [392.00, 0.7, 196.00],
+      [349.23, 1.5, 174.61],
     ];
 
     let offset = 0;
     const now = ctx.currentTime + 0.1;
 
-    melody.forEach(([freq, duration]) => {
+    melody.forEach(([freq, duration, bassFreq]) => {
+      // Main melody bell
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
 
-      // Soft music box timbre: sine with subtle harmonic
       osc.type = "sine";
       osc.frequency.setValueAtTime(freq, now + offset);
 
       gain.gain.setValueAtTime(0.001, now + offset);
-      gain.gain.exponentialRampToValueAtTime(0.07, now + offset + 0.03);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + offset + duration * 0.95);
+      gain.gain.exponentialRampToValueAtTime(0.09, now + offset + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + offset + duration * 0.9);
 
       osc.connect(gain);
       gain.connect(ctx.destination);
@@ -268,18 +283,33 @@ class SoundManager {
       osc.start(now + offset);
       osc.stop(now + offset + duration);
 
-      offset += duration * 0.65;
+      // Warm acoustic bass accompaniment
+      if (bassFreq) {
+        const bassOsc = ctx.createOscillator();
+        const bassGain = ctx.createGain();
+        bassOsc.type = "triangle";
+        bassOsc.frequency.setValueAtTime(bassFreq, now + offset);
+        bassGain.gain.setValueAtTime(0.001, now + offset);
+        bassGain.gain.exponentialRampToValueAtTime(0.04, now + offset + 0.02);
+        bassGain.gain.exponentialRampToValueAtTime(0.0001, now + offset + duration * 0.85);
+
+        bassOsc.connect(bassGain);
+        bassGain.connect(ctx.destination);
+
+        bassOsc.start(now + offset);
+        bassOsc.stop(now + offset + duration);
+      }
+
+      offset += duration * 0.68;
     });
 
-    // Schedule next loop
-    const totalTimeMs = (offset + 1.5) * 1000;
+    const totalTimeMs = (offset + 1.2) * 1000;
     this.melodyTimer = setTimeout(() => {
       if (this.musicPlaying && !this.isMuted) {
-        this.startSynthMelody();
+        this.startSynthBirthdaySong();
       }
     }, totalTimeMs);
   }
 }
 
 export const soundManager = new SoundManager();
-
