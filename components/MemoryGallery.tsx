@@ -94,36 +94,18 @@ export default function MemoryGallery() {
 
       {/* Section Header */}
       <div className="text-center mb-14">
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card border-pink-300/30 text-blush-300 text-xs sm:text-sm font-medium uppercase tracking-widest mb-3"
-        >
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card border-pink-300/30 text-blush-300 text-xs sm:text-sm font-medium uppercase tracking-widest mb-3">
           <Camera className="w-3.5 h-3.5 text-blush-400" />
           <span>Timeless Memories</span>
-        </motion.div>
+        </div>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-3xl sm:text-5xl font-serif font-bold text-pink-gradient"
-        >
+        <h2 className="text-3xl sm:text-5xl font-serif font-bold text-pink-gradient">
           Beautiful Memories With Megha 📸
-        </motion.h2>
+        </h2>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-lavender-200/80 text-sm sm:text-base max-w-lg mx-auto mt-3"
-        >
+        <p className="text-lavender-200/80 text-sm sm:text-base max-w-lg mx-auto mt-3">
           A tribute to our happiest smiles, sweetest moments, and the boundless love we share.
-        </motion.p>
+        </p>
       </div>
 
       {/* Photo Cards Grid */}
@@ -131,15 +113,10 @@ export default function MemoryGallery() {
         {MEMORIES.map((item, index) => {
           const isFailed = failedImages[item.id];
           return (
-            <motion.div
+            <div
               key={item.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
               onClick={() => openLightbox(index)}
-              className="group cursor-pointer rounded-3xl p-3.5 glass-card-gold hover:border-gold-300/60 transition-all duration-500 relative flex flex-col justify-between overflow-hidden shadow-2xl"
+              className="group cursor-pointer rounded-3xl p-3.5 glass-card-gold hover:border-gold-300/60 transition-all duration-300 relative flex flex-col justify-between overflow-hidden shadow-2xl hover:-translate-y-2"
             >
               {/* Photo Container */}
               <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden bg-gradient-to-br from-midnight-900 to-purple-950/70 border border-gold-300/20">
@@ -197,7 +174,7 @@ export default function MemoryGallery() {
                   {item.caption}
                 </p>
               </div>
-            </motion.div>
+            </div>
           );
         })}
       </div>

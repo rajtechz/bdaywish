@@ -58,57 +58,26 @@ export default function BirthdayWishes() {
 
       {/* Section Header */}
       <div className="text-center mb-14">
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card border-gold-300/30 text-gold-200 text-xs sm:text-sm font-medium uppercase tracking-widest mb-3"
-        >
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card border-gold-300/30 text-gold-200 text-xs sm:text-sm font-medium uppercase tracking-widest mb-3">
           <Sparkles className="w-3.5 h-3.5 text-gold-300" />
           <span>Blessings & Wishes</span>
-        </motion.div>
+        </div>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-3xl sm:text-5xl font-serif font-bold text-pink-gradient"
-        >
+        <h2 className="text-3xl sm:text-5xl font-serif font-bold text-pink-gradient">
           Heartfelt Birthday Wishes 🌟
-        </motion.h2>
+        </h2>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-lavender-200/80 text-sm sm:text-base max-w-md mx-auto mt-2"
-        >
+        <p className="text-lavender-200/80 text-sm sm:text-base max-w-md mx-auto mt-2">
           Every floating card is a prayer sent into the universe for your endless joy.
-        </motion.p>
+        </p>
       </div>
 
       {/* Animated Floating Wishes Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {WISHES.map((wish, index) => (
-          <motion.div
+          <div
             key={wish.id}
-            initial={{ opacity: 0, y: 35, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.6,
-              delay: index * 0.12,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            whileHover={{
-              y: -8,
-              scale: 1.02,
-              transition: { duration: 0.25 },
-            }}
-            className={`relative rounded-3xl p-6 sm:p-7 glass-card ${wish.borderColor} bg-gradient-to-br ${wish.gradient} flex flex-col justify-between overflow-hidden shadow-xl group`}
+            className={`relative rounded-3xl p-6 sm:p-7 glass-card ${wish.borderColor} bg-gradient-to-br ${wish.gradient} flex flex-col justify-between overflow-hidden shadow-xl group hover:-translate-y-2 transition-transform duration-300`}
           >
             {/* Shimmer reflection */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-2xl group-hover:bg-white/10 transition-colors pointer-events-none" />
@@ -131,7 +100,7 @@ export default function BirthdayWishes() {
               <span>Always in my prayers</span>
               <Heart className="w-3.5 h-3.5 text-blush-400 fill-blush-400 opacity-60 group-hover:opacity-100 transition-opacity" />
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>

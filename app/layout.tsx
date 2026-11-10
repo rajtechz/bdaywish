@@ -43,8 +43,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark scroll-smooth">
-      <body className="bg-midnight-950 text-blush-50 antialiased selection:bg-blush-500 selection:text-white">
+    <html lang="en" className="dark scroll-smooth" style={{ backgroundColor: "#0d031a" }}>
+      <body
+        className="bg-midnight-950 text-blush-50 antialiased selection:bg-blush-500 selection:text-white min-h-screen"
+        style={{
+          backgroundColor: "#0d031a",
+          backgroundImage: "radial-gradient(circle at 50% 10%, #360b45 0%, #1e052d 35%, #0d031a 100%)",
+          color: "#fff5f7",
+          margin: 0,
+        }}
+      >
         {children}
       </body>
     </html>

@@ -14,46 +14,22 @@ export default function BirthdayMessage() {
 
       {/* Section Header */}
       <div className="text-center mb-10">
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card border-gold-300/30 text-gold-200 text-xs sm:text-sm font-medium uppercase tracking-widest mb-3"
-        >
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card border-gold-300/30 text-gold-200 text-xs sm:text-sm font-medium uppercase tracking-widest mb-3">
           <Feather className="w-3.5 h-3.5 text-gold-300" />
           <span>Personal Letter</span>
-        </motion.div>
+        </div>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-3xl sm:text-5xl font-serif font-bold text-pink-gradient"
-        >
+        <h2 className="text-3xl sm:text-5xl font-serif font-bold text-pink-gradient">
           A Little Message From My Heart ❤️
-        </motion.h2>
+        </h2>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-lavender-200/80 text-sm sm:text-base max-w-md mx-auto mt-2"
-        >
+        <p className="text-lavender-200/80 text-sm sm:text-base max-w-md mx-auto mt-2">
           Words that come straight from the soul, sealed with infinite love for you.
-        </motion.p>
+        </p>
       </div>
 
       {/* Handwritten Letter Card */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 30 }}
-        whileInView={{ opacity: 1, scale: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-        className="relative mx-auto rounded-3xl p-6 sm:p-12 shadow-[0_25px_70px_rgba(0,0,0,0.6)] border border-gold-300/40 overflow-hidden bg-gradient-to-b from-[#1b0b2b]/95 via-[#160722]/95 to-[#0e0417]/95 backdrop-blur-2xl"
-      >
+      <div className="relative mx-auto rounded-3xl p-6 sm:p-12 shadow-[0_25px_70px_rgba(0,0,0,0.6)] border border-gold-300/40 overflow-hidden bg-gradient-to-b from-[#1b0b2b]/95 via-[#160722]/95 to-[#0e0417]/95 backdrop-blur-2xl">
         {/* Subtle parchment watermark / corner ornaments */}
         <div className="absolute top-4 left-4 w-12 h-12 border-t-2 border-l-2 border-gold-300/30 rounded-tl-xl pointer-events-none" />
         <div className="absolute top-4 right-4 w-12 h-12 border-t-2 border-r-2 border-gold-300/30 rounded-tr-xl pointer-events-none" />
@@ -121,7 +97,7 @@ export default function BirthdayMessage() {
             </span>
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

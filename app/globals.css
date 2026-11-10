@@ -18,13 +18,18 @@
 html {
   scroll-behavior: smooth;
   font-family: var(--font-outfit);
+  background-color: #0d031a !important;
+  color: #fff5f7;
 }
 
 body {
-  background-color: #07030b;
-  color: #fff5f7;
+  background-color: #0d031a !important;
+  background-image: radial-gradient(circle at 50% 10%, #360b45 0%, #1e052d 35%, #0d031a 100%) !important;
+  color: #fff5f7 !important;
   overflow-x: hidden;
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 /* Glassmorphism Cards */
@@ -91,4 +96,3 @@ body {
   background-size: 200% 100%;
   animation: goldShimmer 3.5s infinite linear;
 }
-

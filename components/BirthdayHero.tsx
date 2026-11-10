@@ -27,82 +27,60 @@ export default function BirthdayHero() {
     // Multi-stage fireworks & confetti
     triggerRoyalConfetti();
     setTimeout(() => {
-      triggerFireworks(3000);
+      triggerFireworks(3500);
     }, 500);
   };
 
   return (
-    <section className="relative min-h-[92vh] flex flex-col items-center justify-center text-center px-4 pt-12 pb-20 overflow-hidden">
+    <section
+      id="birthday-hero"
+      className="relative min-h-[92vh] flex flex-col items-center justify-center text-center px-4 pt-16 pb-20 overflow-hidden"
+    >
       {/* Soft Ambient Radiance */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[34rem] h-[34rem] rounded-full bg-gradient-to-r from-pink-500/15 via-gold-400/20 to-purple-600/20 blur-[130px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[34rem] h-[34rem] rounded-full bg-gradient-to-r from-pink-500/20 via-gold-400/20 to-purple-600/20 blur-[130px] pointer-events-none" />
 
       {/* Floating decorative badges */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="flex items-center gap-2 px-5 py-2 rounded-full glass-card border-gold-300/40 text-gold-200 text-xs sm:text-sm font-medium tracking-widest uppercase mb-6 shadow-xl"
-      >
+      <div className="flex items-center gap-2 px-5 py-2 rounded-full glass-card border-gold-300/40 text-gold-200 text-xs sm:text-sm font-medium tracking-widest uppercase mb-6 shadow-xl">
         <Star className="w-3.5 h-3.5 text-gold-300 fill-gold-300 animate-spin" style={{ animationDuration: "12s" }} />
         <span>Today Is All About Celebrating You</span>
         <Star className="w-3.5 h-3.5 text-gold-300 fill-gold-300 animate-spin" style={{ animationDuration: "12s" }} />
-      </motion.div>
+      </div>
 
       {/* "HAPPY BIRTHDAY" */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.9, delay: 0.2 }}
-        className="relative"
-      >
+      <div className="relative">
         <span className="text-xl sm:text-3xl md:text-4xl font-serif font-light tracking-[0.3em] uppercase text-pink-200/90 block mb-1">
           HAPPY BIRTHDAY
         </span>
 
         {/* "MEGHA" - Huge Gold Gradient Luxury Typography */}
-        <h1 className="text-6xl sm:text-8xl md:text-9xl font-serif font-extrabold tracking-tight my-2">
+        <h2 className="text-6xl sm:text-8xl md:text-9xl font-serif font-extrabold tracking-tight my-2">
           <span className="text-gold-gradient relative inline-block drop-shadow-[0_10px_40px_rgba(217,179,69,0.5)]">
             MEGHA
             {/* Sparkle icons hugging the name */}
             <motion.span
               animate={{ rotate: 360, scale: [1, 1.25, 1] }}
               transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-              className="absolute -top-3 -right-6 sm:-right-10 text-gold-300"
+              className="absolute -top-3 -right-6 sm:-right-10 text-gold-300 pointer-events-none"
             >
               <Sparkles className="w-6 h-6 sm:w-10 sm:h-10" />
             </motion.span>
           </span>
-        </h1>
-      </motion.div>
+        </h2>
+      </div>
 
       {/* "To the most wonderful sister in the world ❤️" */}
-      <motion.p
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        className="text-base sm:text-2xl font-serif italic text-pink-100/95 max-w-xl mx-auto mt-2 flex items-center justify-center gap-2"
-      >
+      <p className="text-base sm:text-2xl font-serif italic text-pink-100/95 max-w-xl mx-auto mt-2 flex items-center justify-center gap-2">
         <span>To the most wonderful sister in the world</span>
         <Heart className="w-5 h-5 sm:w-6 sm:h-6 text-blush-500 fill-blush-500 inline-block animate-pulse" />
-      </motion.p>
+      </p>
 
       {/* Interactive Birthday Cake Illustration */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.6 }}
-        className="mt-6 mb-2"
-      >
+      <div className="mt-8 mb-2">
         <BirthdayCake isCandleBlown={isCandleBlown} onBlowCandle={handleMakeWish} />
-      </motion.div>
+      </div>
 
       {/* "Make a Wish ✨" Button / Confirmation message */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.8 }}
-        className="flex flex-col items-center mt-3 z-20"
-      >
+      <div className="flex flex-col items-center mt-4 z-20">
         <motion.button
           onClick={handleMakeWish}
           whileHover={{ scale: 1.05, boxShadow: "0 0 35px rgba(238,87,120,0.6)" }}
@@ -135,8 +113,7 @@ export default function BirthdayHero() {
             </motion.div>
           )}
         </AnimatePresence>
-      </motion.div>
+      </div>
     </section>
   );
 }
-

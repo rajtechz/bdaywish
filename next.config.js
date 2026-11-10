@@ -4,7 +4,18 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  async rewrites() {
+    return [
+      {
+        source: '/megha',
+        destination: '/Megha',
+      },
+      {
+        source: '/birthday',
+        destination: '/Megha',
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
-

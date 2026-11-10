@@ -59,53 +59,29 @@ export default function FinalCelebration() {
 
       <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
         {/* "ONCE AGAIN..." */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-card border-gold-300/40 text-gold-200 text-xs sm:text-sm font-medium tracking-[0.25em] uppercase mb-4 shadow-xl"
-        >
+        <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-card border-gold-300/40 text-gold-200 text-xs sm:text-sm font-medium tracking-[0.25em] uppercase mb-4 shadow-xl">
           <Sparkles className="w-3.5 h-3.5 text-gold-300" />
           <span>ONCE AGAIN...</span>
           <Sparkles className="w-3.5 h-3.5 text-gold-300" />
-        </motion.div>
+        </div>
 
         {/* "HAPPY BIRTHDAY MEGHA! ❤️" */}
-        <motion.h2
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-4xl sm:text-7xl md:text-8xl font-serif font-black tracking-tight my-2"
-        >
+        <h2 className="text-4xl sm:text-7xl md:text-8xl font-serif font-black tracking-tight my-2">
           <span className="text-gold-gradient drop-shadow-[0_10px_40px_rgba(217,179,69,0.5)] block">
             HAPPY BIRTHDAY
           </span>
           <span className="text-pink-gradient drop-shadow-[0_10px_40px_rgba(238,87,120,0.5)] block mt-1">
             MEGHA! ❤️
           </span>
-        </motion.h2>
+        </h2>
 
         {/* Final Message */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-base sm:text-2xl font-serif italic text-blush-100/95 max-w-2xl mx-auto mt-6 leading-relaxed"
-        >
+        <p className="text-base sm:text-2xl font-serif italic text-blush-100/95 max-w-2xl mx-auto mt-6 leading-relaxed">
           &ldquo;Keep smiling, keep shining. You deserve all the happiness in this world!&rdquo;
-        </motion.p>
+        </p>
 
         {/* Celebrate Again Button */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-10"
-        >
+        <div className="mt-10">
           <motion.button
             onClick={handleCelebrateAgain}
             whileHover={{ scale: 1.08, boxShadow: "0 0 45px rgba(217,179,69,0.7)" }}
@@ -115,7 +91,7 @@ export default function FinalCelebration() {
             <PartyPopper className="w-6 h-6 text-midnight-950 group-hover:rotate-12 transition-transform" />
             <span>CELEBRATE AGAIN 🎉</span>
           </motion.button>
-        </motion.div>
+        </div>
 
         {celebrationCount > 0 && (
           <motion.p
