@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-playfair: 'Playfair Display', Georgia, serif;
+  --font-outfit: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-great-vibes: 'Great Vibes', cursive;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-outfit);
+}
+
+body {
+  background-color: #07030b;
+  color: #fff5f7;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 209, 220, 0.18);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 20px rgba(238, 87, 120, 0.1);
+}
+
+.glass-card-gold {
+  background: rgba(247, 241, 212, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(217, 179, 69, 0.3);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(217, 179, 69, 0.15);
+}
+
+/* Gold Gradient Typography */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #fff2cc 0%, #ffd966 30%, #e3cb73 50%, #d9b345 75%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 35px rgba(217, 179, 69, 0.4);
+}
+
+.text-pink-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #ffd1dc 40%, #f78198 80%, #ee5778 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(238, 87, 120, 0.35);
+}
+
+.text-lavender-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #e9ddfc 45%, #be98f5 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0c0714;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #d9b345, #ee5778);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffd1dc;
+}
+
+/* Subtle Shimmer Animation */
+@keyframes goldShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.gold-shimmer {
+  background: linear-gradient(90deg, rgba(217,179,69,0.1) 0%, rgba(255,255,255,0.4) 50%, rgba(217,179,69,0.1) 100%);
+  background-size: 200% 100%;
+  animation: goldShimmer 3.5s infinite linear;
+}
