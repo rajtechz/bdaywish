@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Heart, Clock, Cake, PartyPopper, ArrowRight, RotateCcw, Flame } from "lucide-react";
+import { Sparkles, Heart, Clock, Cake, PartyPopper, ArrowRight, RotateCcw } from "lucide-react";
 import TopCapsuleNav from "./TopCapsuleNav";
 import AestheticMusicPlayer from "./AestheticMusicPlayer";
 import CardFlipper from "./CardFlipper";
@@ -14,29 +14,38 @@ export default function MultiSlideCountdown() {
   const [currentSlide, setCurrentSlide] = useState(1);
   const totalSlides = 6;
 
-  // 3-day countdown state
+  // Live countdown to 13 November 2026 (Asia/Kolkata timezone: +05:30)
   const [timeLeft, setTimeLeft] = useState({
     days: 3,
     hours: 0,
     minutes: 0,
     seconds: 0,
+    isBirthdayToday: false,
   });
 
   useEffect(() => {
-    // Set target date 3 days from now
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 3);
+    // 13 November 2026 00:00:00 Asia/Kolkata (+05:30)
+    const targetDate = new Date("2026-11-13T00:00:00+05:30").getTime();
 
     const updateTimer = () => {
       const now = new Date().getTime();
-      const difference = targetDate.getTime() - now;
+      const difference = targetDate - now;
 
-      if (difference > 0) {
+      if (difference <= 0) {
+        setTimeLeft({
+          days: 0,
+          hours: 0,
+          minutes: 0,
+          seconds: 0,
+          isBirthdayToday: true,
+        });
+      } else {
         setTimeLeft({
           days: Math.floor(difference / (1000 * 60 * 60 * 24)),
           hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
           minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
           seconds: Math.floor((difference % (1000 * 60)) / 1000),
+          isBirthdayToday: false,
         });
       }
     };
@@ -50,10 +59,8 @@ export default function MultiSlideCountdown() {
     setCurrentSlide(slideNum);
     soundManager.playCelestialChime();
 
-    // Trigger celebrations on reveal or finale
     if (slideNum === 3) {
       triggerRoyalConfetti();
-      soundManager.startBackgroundMusic();
     } else if (slideNum === 6) {
       triggerRoyalConfetti();
       triggerHeartConfetti();
@@ -72,20 +79,20 @@ export default function MultiSlideCountdown() {
 
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-between px-4 py-8 overflow-hidden select-none">
-      {/* Top Capsule Navigation Badge */}
+      {/* Top Capsule Navigation Badge: A L L E N ❤️ */}
       <TopCapsuleNav
         currentSlide={currentSlide}
         totalSlides={totalSlides}
         onSelectSlide={goToSlide}
       />
 
-      {/* Floating Aesthetic Glassmorphic Music Player (Top Right) */}
+      {/* Floating Aesthetic Glassmorphic Music Player (All of Me) */}
       <AestheticMusicPlayer />
 
       {/* Main Slide Content Area */}
-      <div className="relative z-10 w-full max-w-xl mx-auto my-auto flex flex-col items-center justify-center text-center pt-16 pb-8">
+      <div className="relative z-10 w-full max-w-xl mx-auto my-auto flex flex-col items-center justify-center text-center pt-20 pb-8">
         <AnimatePresence mode="wait">
-          {/* SLIDE 1 – THE ENTRY */}
+          {/* SLIDE 1 – THE ENTRY (Exact Match to User Reference Screenshot) */}
           {currentSlide === 1 && (
             <motion.div
               key="slide-1"
@@ -95,25 +102,41 @@ export default function MultiSlideCountdown() {
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="w-full flex flex-col items-center"
             >
-              {/* Emojis matching screenshot aesthetic */}
-              <div className="flex items-center justify-center gap-2 mb-4 text-2xl animate-bounce">
+              {/* Main Birthday Typography matching screenshot layout */}
+              <h2 className="text-4xl sm:text-6xl font-serif font-light text-pink-700 tracking-wide mb-1">
+                Happy Birthday
+              </h2>
+
+              <h1 className="text-4xl sm:text-6xl font-serif font-bold text-magenta-gradient tracking-tight mb-2">
+                Allen, My Best
+              </h1>
+
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <span className="text-3xl sm:text-5xl font-serif font-bold text-magenta-gradient">
+                  Friend..
+                </span>
+                <span className="text-3xl sm:text-5xl text-purple-600 animate-pulse">
+                  💜
+                </span>
+              </div>
+
+              {/* Subtitle */}
+              <p className="text-base sm:text-xl font-serif italic text-pink-800/90 mb-4 max-w-md font-medium">
+                My dearest friend, today is all about celebrating you.
+              </p>
+
+              {/* Additional Decorative Best-Friend Text */}
+              <div className="inline-block px-4 py-1.5 rounded-full bg-pink-100/90 border border-pink-200/80 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-pink-700 mb-6">
+                MY BEST FRIEND. MY PARTNER IN CRIME. MY FAVOURITE IDIOT. 😂
+              </div>
+
+              {/* Emojis matching reference screenshot */}
+              <div className="flex items-center justify-center gap-2 mb-8 text-2xl">
                 <span>💕</span>
                 <span>🌹</span>
                 <span>🌸</span>
                 <span>💖</span>
               </div>
-
-              {/* Big Text: “Hiiii, YOU!” */}
-              <h1 className="text-5xl sm:text-7xl font-serif font-black tracking-tight mb-3">
-                <span className="text-magenta-gradient drop-shadow-sm block">
-                  Hiiii, YOU!
-                </span>
-              </h1>
-
-              {/* “I have something for you…” */}
-              <p className="text-lg sm:text-2xl font-serif italic text-pink-900/80 mb-8 max-w-md">
-                I have something for you…
-              </p>
 
               {/* Button: “Click here 👀” */}
               <motion.button
@@ -143,7 +166,7 @@ export default function MultiSlideCountdown() {
               </div>
 
               <span className="text-xs uppercase tracking-widest text-pink-600/80 font-bold mb-2">
-                Hold on a second...
+                Wait a minute, Allen...
               </span>
 
               {/* “Okay, first of all…” */}
@@ -157,7 +180,7 @@ export default function MultiSlideCountdown() {
               </p>
 
               <p className="text-sm sm:text-base text-pink-900/70 max-w-sm mb-8 leading-relaxed">
-                Did you really think I’d forget? Or were you just snooping around hoping for birthday spoilers?
+                Did you really think I’d forget your birthday? Or were you just snooping around hoping for early spoilers? 💅
               </p>
 
               {/* Button: “What’s coming next?” */}
@@ -184,7 +207,7 @@ export default function MultiSlideCountdown() {
             >
               <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-100 text-pink-600 text-xs font-semibold uppercase tracking-widest mb-3">
                 <Sparkles className="w-3.5 h-3.5 text-pink-500 animate-spin" />
-                <span>The Big Countdown</span>
+                <span>13 November 2026 Countdown</span>
               </div>
 
               {/* “IT’S YOUR BIRTHDAY, BABY! 🎂” */}
@@ -196,10 +219,12 @@ export default function MultiSlideCountdown() {
 
               {/* “And guess what? Just 3 DAYS TO GO!” */}
               <p className="text-base sm:text-xl font-serif italic text-pink-800 font-semibold mb-6">
-                And guess what? Just 3 DAYS TO GO!
+                {timeLeft.isBirthdayToday
+                  ? "IT’S OFFICIALLY YOUR BIRTHDAY TODAY, ALLEN! 🎉"
+                  : "JUST 3 DAYS TO GO! 🎂"}
               </p>
 
-              {/* Animated Countdown Card Timer */}
+              {/* Live Live Countdown Clock (Asia/Kolkata) */}
               <div className="grid grid-cols-4 gap-2.5 sm:gap-4 w-full max-w-md mb-8">
                 {[
                   { label: "DAYS", value: timeLeft.days },
@@ -221,6 +246,10 @@ export default function MultiSlideCountdown() {
                 ))}
               </div>
 
+              <p className="text-xs text-pink-600/80 font-medium mb-6">
+                Target Date: 13 November 2026 • Asia/Kolkata
+              </p>
+
               {/* Button: “Wait, there’s more…” */}
               <motion.button
                 onClick={nextSlide}
@@ -233,7 +262,7 @@ export default function MultiSlideCountdown() {
             </motion.div>
           )}
 
-          {/* SLIDE 4 – THE FLIPPER CARD ("Sister ki jagah My best - Likhdena") */}
+          {/* SLIDE 4 – THE FLIPPER CARD TO ALLEN */}
           {currentSlide === 4 && (
             <motion.div
               key="slide-4"
@@ -248,7 +277,7 @@ export default function MultiSlideCountdown() {
               </div>
 
               <h2 className="text-2xl sm:text-3xl font-serif font-bold text-pink-950 mb-1">
-                A Letter For My Best ❤️
+                A Letter For Allen ❤️
               </h2>
               <p className="text-xs sm:text-sm text-pink-900/70 mb-2">
                 Click the envelope to flip open and read!
@@ -280,14 +309,14 @@ export default function MultiSlideCountdown() {
               className="w-full flex flex-col items-center"
             >
               <span className="text-xs uppercase tracking-widest text-pink-600 font-bold mb-1">
-                Make A Preliminary Wish ✨
+                Make A Preliminary Wish, Allen ✨
               </span>
 
               <h2 className="text-3xl sm:text-4xl font-serif font-bold text-pink-950 mb-1">
                 Pre-Birthday Cake 🎂
               </h2>
               <p className="text-xs sm:text-sm text-pink-900/70 mb-2">
-                Tap the candles to blow them out for 3 days from now!
+                Tap the candles to blow them out for 13 November!
               </p>
 
               {/* Cake Component */}
@@ -301,7 +330,7 @@ export default function MultiSlideCountdown() {
                 />
               </div>
 
-              {/* Button: “The Grand Finale 🎉” */}
+              {/* Button */}
               <motion.button
                 onClick={nextSlide}
                 whileHover={{ scale: 1.06, boxShadow: "0 10px 30px rgba(225,29,72,0.25)" }}
@@ -331,18 +360,22 @@ export default function MultiSlideCountdown() {
               </div>
 
               <span className="text-xs uppercase tracking-[0.25em] text-pink-600 font-bold mb-1">
-                JUST 3 DAYS LEFT
+                13 NOVEMBER 2026 • 3 DAYS TO GO
               </span>
 
               {/* Big Text */}
               <h2 className="text-3xl sm:text-5xl font-serif font-black tracking-tight mb-2">
                 <span className="text-magenta-gradient drop-shadow-sm block">
-                  HAPPY (ALMOST) BIRTHDAY TO MY BEST! ❤️
+                  HAPPY (ALMOST) BIRTHDAY, ALLEN! ❤️
                 </span>
               </h2>
 
-              <p className="text-base sm:text-xl font-serif italic text-pink-900/85 max-w-md mb-6">
-                3 days until the day we celebrate the most iconic person on this planet. Get ready!
+              <p className="text-base sm:text-xl font-serif italic text-pink-900/85 max-w-md mb-2">
+                To my best friend, partner in crime, and favourite idiot.
+              </p>
+
+              <p className="text-xs sm:text-sm text-pink-700/80 max-w-sm mb-6 leading-relaxed">
+                Life is infinitely more fun with you around. In 3 days, we celebrate YOU!
               </p>
 
               {/* Action Buttons */}
@@ -372,7 +405,7 @@ export default function MultiSlideCountdown() {
               </div>
 
               <p className="text-[11px] text-pink-600/70 mt-8 tracking-wider uppercase">
-                Made with all my love for My Best Friend • 3 Days To Go ✨
+                Made with all my love for Allen • Best Friends Forever ✨
               </p>
             </motion.div>
           )}
@@ -390,11 +423,10 @@ export default function MultiSlideCountdown() {
                 ? "w-8 h-2.5 bg-gradient-to-r from-pink-500 to-rose-400"
                 : "w-2.5 h-2.5 bg-pink-300/60 hover:bg-pink-400"
             }`}
-            title={`Slide ${idx + 1}`}
+            title={`Part ${idx + 1}`}
           />
         ))}
       </div>
     </div>
   );
 }
-

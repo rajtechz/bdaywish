@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import BirthdayExperience from "@/components/BirthdayExperience";
 
 export const metadata: Metadata = {
-  title: "Birthday Surprise For My Best! ✨🎂 | 3 Days To Go",
-  description: "A playful, multi-slide birthday countdown surprise crafted especially for my best friend.",
+  title: "Happy Birthday Allen! ✨🎂 | 3 Days To Go",
+  description: "A cinematic birthday countdown surprise crafted especially for Allen.",
 };
 
 export default function MeghaPage() {

@@ -7,12 +7,20 @@ const nextConfig = {
   async rewrites() {
     return [
       {
+        source: '/allen',
+        destination: '/Allen',
+      },
+      {
         source: '/megha',
-        destination: '/Megha',
+        destination: '/Allen',
+      },
+      {
+        source: '/Megha',
+        destination: '/Allen',
       },
       {
         source: '/birthday',
-        destination: '/Megha',
+        destination: '/Allen',
       },
     ];
   },

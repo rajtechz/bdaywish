@@ -14,8 +14,8 @@ export default function TopCapsuleNav({
   totalSlides,
   onSelectSlide,
 }: TopCapsuleNavProps) {
-  // Letters: "M Y B E S T"
-  const letters = ["M", "Y", "B", "E", "S", "T"];
+  // Letters: "A L L E N"
+  const letters = ["A", "L", "L", "E", "N", "✨"];
 
   return (
     <div className="fixed top-4 left-1/2 -translate-x-1/2 z-40 select-none">
@@ -34,7 +34,7 @@ export default function TopCapsuleNav({
                     ? "bg-gradient-to-tr from-pink-500 to-rose-400 text-white shadow-md shadow-pink-300/50 scale-110"
                     : "text-pink-900/60 hover:text-pink-700 hover:bg-pink-100/60"
                 }`}
-                title={`Slide ${idx + 1}`}
+                title={`Part ${idx + 1}`}
               >
                 {letter}
               </button>
@@ -47,4 +47,3 @@ export default function TopCapsuleNav({
     </div>
   );
 }
-
