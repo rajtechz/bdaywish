@@ -286,3 +286,4 @@ export default function MemoryGallery() {
     </section>
   );
 }
+

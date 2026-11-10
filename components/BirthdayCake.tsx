@@ -123,3 +123,4 @@ export default function BirthdayCake({ isCandleBlown, onBlowCandle }: BirthdayCa
     </div>
   );
 }
+

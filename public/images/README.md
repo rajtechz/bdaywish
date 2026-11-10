@@ -10,3 +10,4 @@ To add real photos of Megha:
 2. You can also replace `og-preview.png` if you want a custom WhatsApp link preview image.
 
 Note: Even if photos are missing or in other formats, the website will automatically display elegant artistic fallback cards with loving sisterhood messages and quotes!
+

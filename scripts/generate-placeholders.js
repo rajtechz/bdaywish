@@ -129,3 +129,4 @@ const ogPalette = (x, y, w, h) => {
 const ogData = createPNG(600, 315, ogPalette);
 fs.writeFileSync(path.join(imgDir, 'og-preview.png'), ogData);
 console.log('Generated og-preview.png');
+

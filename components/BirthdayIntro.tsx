@@ -144,3 +144,4 @@ export default function BirthdayIntro({ onReveal }: BirthdayIntroProps) {
     </AnimatePresence>
   );
 }
+

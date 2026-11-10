@@ -75,3 +75,4 @@ export const triggerFireworks = (durationMs: number = 4000) => {
     }
   })();
 };
+

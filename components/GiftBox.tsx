@@ -143,3 +143,4 @@ export default function GiftBox({ isOpen, onOpen }: GiftBoxProps) {
     </div>
   );
 }
+
