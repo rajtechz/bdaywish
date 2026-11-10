@@ -13,58 +13,42 @@ import { triggerRoyalConfetti, triggerFireworks, triggerHeartConfetti } from "@/
 
 interface LetterData {
   letter: string;
-  word: string;
-  letterHeadline: string;
-  salutation: string;
   message: string;
 }
 
 const LETTERS_DATA: LetterData[] = [
   {
     letter: "A",
-    word: "Authentic",
-    letterHeadline: "A is for Authentic..",
-    salutation: "My Authentic Allen,",
     message:
-      "A is for AUTHENTIC. In a world full of people putting on acts, you are the realest person I know. You speak your mind, you stay true to who you are, and your honesty as a best friend is something I cherish more than words can say. Thank you for always keeping it 100% real with me.",
+      "As your birthday is coming up, I just wanted to remind you that you're freaking special! ❤️",
   },
   {
     letter: "L",
-    word: "Legendary",
-    letterHeadline: "L is for Legendary..",
-    salutation: "My Legendary Allen,",
     message:
-      "L is for LEGENDARY. Every single adventure, late-night conversation, and chaotic idea we've ever shared turns into an unforgettable story. Having you as my partner in crime makes everyday life ten times more exciting. You are genuinely a legend, bro.",
+      "You make Mumma proud in more ways than you know ♥️",
   },
   {
     letter: "L",
-    word: "Loyal",
-    letterHeadline: "L is for Loyal..",
-    salutation: "My Loyal Allen,",
     message:
-      "L is for LOYAL. You are the friend who stands by me through thick and thin. You show up when it matters most, listen without judgment, and celebrate my wins like your own. A loyal best friend like you is one in a million, and I'll never take that for granted.",
+      "I hope the coming year brings you everything you've ever wished for and so much more!",
   },
   {
     letter: "E",
-    word: "Extraordinary",
-    letterHeadline: "E is for Extraordinary..",
-    salutation: "My Extraordinary Allen,",
     message:
-      "E is for EXTRAORDINARY. Your humor, your positive energy, and your massive heart make you completely irreplaceable. You have this rare gift of walking into any room and instantly making everyone smile. Never lose that spark that makes you so special.",
+      "I hope this new chapter gives you countless reasons to smile and everything you've been silently praying for",
   },
   {
     letter: "N",
-    word: "Number One",
-    letterHeadline: "N is for Number One..",
-    salutation: "My Number One Allen,",
     message:
-      "N is for NUMBER ONE. My best friend, my ride-or-die, and the best idiot I could ever ask for. In just 3 days (13 November 2026), it's officially your birthday, but you deserve to be celebrated every single day. Let's make this year your best one yet! ❤️",
+      "And lastly, I’m always here for you! Always and forever, cheering you on, celebrating your wins, and rooting for you louder than ever! ❤️",
   },
 ];
 
 export default function MultiSlideCountdown() {
-  const [currentSlide, setCurrentSlide] = useState(1);
+  // Start on Slide 0 (Home greeting matching Image 1 & Image 7)
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [isCurtainTransitioning, setIsCurtainTransitioning] = useState(false);
+  const [transitionLetter, setTransitionLetter] = useState<string>("✨");
   const totalSlides = 6;
 
   // Live countdown to 13 November 2026 (Asia/Kolkata timezone: +05:30)
@@ -107,9 +91,18 @@ export default function MultiSlideCountdown() {
     return () => clearInterval(interval);
   }, []);
 
-  // When clicking any letter: Close curtains -> change slide -> open curtains with golden light burst!
+  // When clicking any letter: Close curtains with big letter -> change slide -> open curtains with golden light burst!
   const switchSlideWithCurtains = (targetSlide: number) => {
     if (targetSlide === currentSlide || isCurtainTransitioning) return;
+
+    // Determine target letter to show in the center of the closing curtain (matching Image 2)
+    let letterToShow = "✨";
+    if (targetSlide >= 1 && targetSlide <= 5) {
+      letterToShow = LETTERS_DATA[targetSlide - 1].letter;
+    } else if (targetSlide === 6) {
+      letterToShow = "🎂";
+    }
+    setTransitionLetter(letterToShow);
 
     soundManager.playCelestialChime();
     setIsCurtainTransitioning(true);
@@ -142,12 +135,16 @@ export default function MultiSlideCountdown() {
     }
   };
 
-  const currentLetterData = currentSlide <= 5 ? LETTERS_DATA[currentSlide - 1] : null;
+  const currentLetterData =
+    currentSlide >= 1 && currentSlide <= 5 ? LETTERS_DATA[currentSlide - 1] : null;
 
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-between px-4 py-8 overflow-hidden select-none">
       {/* Cinematic Curtains Overlay for Initial Load & Every Letter Click */}
-      <CinematicCurtains isTransitioning={isCurtainTransitioning} />
+      <CinematicCurtains
+        isTransitioning={isCurtainTransitioning}
+        transitionLetter={transitionLetter}
+      />
 
       {/* Top Capsule Navigation Badge: [ ✨ ] [ A ] [ L ] [ L ] [ E ] [ N ] [ ✨ ] [ ❤️ ] */}
       <TopCapsuleNav
@@ -162,27 +159,32 @@ export default function MultiSlideCountdown() {
       {/* Main Slide Content Area */}
       <div className="relative z-10 w-full max-w-xl mx-auto my-auto flex flex-col items-center justify-center text-center pt-20 pb-8">
         <AnimatePresence mode="wait">
-          {/* LETTER SLIDES 1 to 5 (A - L - L - E - N matching exact font family & size of Screenshot) */}
-          {currentLetterData && (
+          {/* SLIDE 0 – HOME BIRTHDAY GREETING (Matching Image 1 & Image 7) */}
+          {currentSlide === 0 && (
             <motion.div
-              key={`letter-${currentLetterData.letter}-${currentSlide}`}
+              key="slide-0-home"
               initial={{ opacity: 0, scale: 0.95, y: 15 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -15 }}
               transition={{ duration: 0.4 }}
               className="w-full flex flex-col items-center"
             >
-              {/* Headline Line 1 (Exact Font & Size from media_1794296297409_97e815b7.jpg) */}
+              {/* Headline Line 1 (Exact Font & Size from Image 1 & Image 7) */}
               <h2 className="text-5xl sm:text-7xl font-brush font-bold text-calligraphy-gradient tracking-tight mb-0 leading-tight">
                 Happy Birthday
               </h2>
 
-              {/* Headline Line 2 (Exact Font & Size from Screenshot) */}
+              {/* Headline Line 2 (Exact Font & Size from Image 1 & Image 7) */}
+              <h1 className="text-5xl sm:text-7xl font-brush font-bold text-calligraphy-gradient tracking-tight mt-1 mb-0 leading-tight">
+                Allen, My Best
+              </h1>
+
+              {/* Headline Line 3 with Purple Heart (Exact from Image 1 & Image 7) */}
               <div className="flex items-center justify-center gap-2 mt-1 mb-2">
-                <h1 className="text-4xl sm:text-6xl font-brush font-bold text-calligraphy-gradient tracking-tight">
-                  {currentLetterData.letterHeadline}
-                </h1>
-                <span className="text-3xl sm:text-5xl text-purple-600 animate-pulse">
+                <span className="text-5xl sm:text-7xl font-brush font-bold text-calligraphy-gradient">
+                  Friend..
+                </span>
+                <span className="text-4xl sm:text-6xl text-purple-600 animate-pulse">
                   💜
                 </span>
               </div>
@@ -200,16 +202,51 @@ export default function MultiSlideCountdown() {
                 <span>💖</span>
               </div>
 
-              {/* Glassmorphic Letter Card with exact font hierarchy */}
-              <div className="w-full glass-card-pastel rounded-3xl p-6 sm:p-8 shadow-xl border border-white/95 text-left mb-6 bg-white/80 backdrop-blur-xl">
-                <div className="text-center mb-3">
-                  <h3 className="text-2xl sm:text-3xl font-brush font-bold text-pink-900 mb-1">
-                    {currentLetterData.salutation}
-                  </h3>
-                  <span className="text-lg">🌸</span>
-                </div>
+              {/* 3 Days To Go Countdown Badge */}
+              <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/90 border border-pink-200 text-pink-700 text-xs sm:text-sm font-semibold tracking-wider uppercase mb-8 shadow-sm font-sans">
+                <Sparkles className="w-4 h-4 text-pink-500" />
+                <span>🎂 13 November 2026 • Just 3 Days To Go!</span>
+                <Heart className="w-4 h-4 text-rose-500 fill-rose-500" />
+              </div>
 
-                <p className="font-serif text-xs sm:text-sm text-pink-950/85 leading-relaxed text-justify sm:text-left">
+              {/* Button: Begin exploring letters A - L - L - E - N */}
+              <motion.button
+                onClick={() => switchSlideWithCurtains(1)}
+                whileHover={{ scale: 1.05, boxShadow: "0 12px 35px rgba(225,29,72,0.35)" }}
+                whileTap={{ scale: 0.95 }}
+                className="px-10 sm:px-12 py-4 rounded-full font-bold text-base sm:text-lg tracking-wider text-white bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 shadow-xl shadow-pink-300/60 border border-white/80 flex items-center gap-3 transition-all font-sans"
+              >
+                <span>Open Letter A (A-L-L-E-N) 💌</span>
+                <ArrowRight className="w-5 h-5" />
+              </motion.button>
+            </motion.div>
+          )}
+
+          {/* LETTER SLIDES 1 to 5 (A - L - L - E - N matching exact design of Image 3) */}
+          {currentLetterData && (
+            <motion.div
+              key={`letter-${currentLetterData.letter}-${currentSlide}`}
+              initial={{ opacity: 0, scale: 0.95, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -15 }}
+              transition={{ duration: 0.4 }}
+              className="w-full flex flex-col items-center"
+            >
+              {/* Big Serif Display Letter (Exact matching Image 3) */}
+              <span className="text-8xl sm:text-9xl font-serif font-extrabold text-pink-600 drop-shadow-sm mb-2 leading-none select-none">
+                {currentLetterData.letter}
+              </span>
+
+              {/* Emojis (Exact matching Image 3) */}
+              <div className="flex items-center justify-center gap-3 mb-6 text-2xl sm:text-3xl">
+                <span>💕</span>
+                <span>🌸</span>
+                <span>💖</span>
+              </div>
+
+              {/* Glassmorphic Letter Card with EXACT user message and NO extra text */}
+              <div className="w-full glass-card-pastel rounded-3xl p-7 sm:p-10 shadow-xl border border-white/95 text-center mb-8 bg-white/85 backdrop-blur-xl max-w-lg">
+                <p className="font-serif text-base sm:text-lg text-pink-950/90 leading-relaxed font-medium">
                   {currentLetterData.message}
                 </p>
               </div>
@@ -224,14 +261,14 @@ export default function MultiSlideCountdown() {
                 <span>
                   {currentSlide < 5
                     ? `Next Letter: ${LETTERS_DATA[currentSlide].letter} 👉`
-                    : "The Grand Finale ✨"}
+                    : "The Grand Birthday Finale ✨ 👉"}
                 </span>
                 <ArrowRight className="w-4 h-4" />
               </motion.button>
             </motion.div>
           )}
 
-          {/* SLIDE 6 – THE COUNTDOWN & FINALE (Exact Font & Size from Screenshot) */}
+          {/* SLIDE 6 – THE COUNTDOWN & GRAND FINALE */}
           {currentSlide === 6 && (
             <motion.div
               key="slide-6"
@@ -361,16 +398,16 @@ export default function MultiSlideCountdown() {
 
       {/* Slide Navigation Dots at Bottom */}
       <div className="relative z-20 flex items-center gap-2 py-2">
-        {Array.from({ length: totalSlides }).map((_, idx) => (
+        {Array.from({ length: totalSlides + 1 }).map((_, idx) => (
           <button
             key={idx}
-            onClick={() => switchSlideWithCurtains(idx + 1)}
+            onClick={() => switchSlideWithCurtains(idx)}
             className={`transition-all duration-300 rounded-full ${
-              currentSlide === idx + 1
+              currentSlide === idx
                 ? "w-8 h-2.5 bg-gradient-to-r from-pink-500 to-rose-400"
                 : "w-2.5 h-2.5 bg-pink-300/60 hover:bg-pink-400"
             }`}
-            title={`Part ${idx + 1}`}
+            title={`Slide ${idx}`}
           />
         ))}
       </div>

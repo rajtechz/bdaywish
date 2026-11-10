@@ -26,8 +26,16 @@ export default function TopCapsuleNav({
   return (
     <div className="fixed top-4 left-1/2 -translate-x-1/2 z-40 select-none">
       <div className="glass-pill px-5 py-2 sm:px-7 sm:py-2.5 rounded-full flex items-center gap-3 sm:gap-4 shadow-lg border border-white/90 bg-white/80 backdrop-blur-xl">
-        {/* Left Sparkle (matching screenshot) */}
-        <span className="text-pink-400 text-sm animate-pulse">✨</span>
+        {/* Left Sparkle (matching screenshot, clickable to return Home) */}
+        <button
+          onClick={() => onSelectSlide(0)}
+          className={`text-sm transition-all duration-300 ${
+            currentSlide === 0 ? "text-pink-600 scale-125" : "text-pink-400 hover:scale-110"
+          }`}
+          title="Home Greeting"
+        >
+          ✨
+        </button>
 
         {/* Letters A - L - L - E - N */}
         <div className="flex items-center gap-2 sm:gap-3.5">

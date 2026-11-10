@@ -8,11 +8,13 @@ import { triggerRoyalConfetti, triggerHeartConfetti, triggerFireworks } from "@/
 
 interface CinematicCurtainsProps {
   isTransitioning?: boolean;
+  transitionLetter?: string;
   onCurtainOpen?: () => void;
 }
 
 export default function CinematicCurtains({
   isTransitioning = false,
+  transitionLetter = "",
   onCurtainOpen,
 }: CinematicCurtainsProps) {
   const [hasStarted, setHasStarted] = useState(false);
@@ -131,6 +133,24 @@ export default function CinematicCurtains({
         <div className="absolute bottom-8 right-1/4 text-white/40 text-lg animate-bounce" style={{ animationDuration: "3.5s" }}>💖</div>
       </motion.div>
 
+      {/* MID-TRANSITION LETTER OVERLAY (Matching Screenshot Image 2) */}
+      <AnimatePresence>
+        {isTransitioning && transitionLetter && (
+          <motion.div
+            key={`transition-letter-${transitionLetter}`}
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.25, filter: "blur(4px)" }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none"
+          >
+            <span className="text-8xl sm:text-9xl font-serif text-white font-bold drop-shadow-[0_4px_30px_rgba(0,0,0,0.35)]">
+              {transitionLetter}
+            </span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* INITIAL OPENING CALLOUT CARD (Matching Reference Screenshot Font) */}
       <AnimatePresence>
         {!hasStarted && (
@@ -141,38 +161,55 @@ export default function CinematicCurtains({
             transition={{ duration: 0.5 }}
             className="absolute inset-0 z-30 flex flex-col items-center justify-center p-4 text-center pointer-events-none"
           >
-            <div className="pointer-events-auto glass-card-pastel rounded-3xl p-8 sm:p-10 max-w-md w-full shadow-2xl border-2 border-white/95 flex flex-col items-center bg-white/90 backdrop-blur-2xl">
-              {/* Badge */}
-              <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-100/90 text-pink-700 text-xs font-semibold uppercase tracking-widest mb-4 shadow-sm font-sans">
-                <Sparkles className="w-3.5 h-3.5 text-pink-500 animate-spin" style={{ animationDuration: "6s" }} />
-                <span>A Surprise Is Waiting</span>
-                <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 animate-pulse" />
+            <div className="pointer-events-auto glass-card-pastel rounded-3xl p-8 sm:p-12 max-w-lg sm:max-w-xl w-full shadow-2xl border-2 border-white/95 flex flex-col items-center bg-white/95 backdrop-blur-2xl">
+              {/* Top Badge */}
+              <div className="flex items-center gap-2 px-5 py-2 rounded-full bg-pink-100/90 text-pink-700 text-xs sm:text-sm font-semibold uppercase tracking-widest mb-4 shadow-sm font-sans">
+                <Sparkles className="w-4 h-4 text-pink-500 animate-spin" style={{ animationDuration: "6s" }} />
+                <span>A Surprise Is Waiting For You</span>
+                <Heart className="w-4 h-4 text-rose-500 fill-rose-500 animate-pulse" />
               </div>
 
-              {/* “Hey Allen! 💜” in exact screenshot calligraphy brush font */}
-              <h1 className="text-5xl sm:text-6xl font-brush font-bold tracking-tight mb-2 flex items-center justify-center gap-2">
+              {/* “Hey Allen! 💜” */}
+              <h1 className="text-6xl sm:text-7xl font-brush font-bold tracking-tight mb-2 flex items-center justify-center gap-2.5">
                 <span className="text-calligraphy-gradient">Hey Allen!</span>
-                <span className="text-purple-600">💜</span>
+                <span className="text-purple-600 animate-pulse">💜</span>
               </h1>
 
-              {/* “Someone has prepared a little surprise for you...” in cursive font */}
-              <p className="text-xl sm:text-2xl font-sub-script text-pink-900/90 mb-6 max-w-xs leading-relaxed">
+              {/* Cute Emojis */}
+              <div className="flex items-center justify-center gap-2 my-2 text-2xl sm:text-3xl">
+                <span>💕</span>
+                <span>🌹</span>
+                <span>🌸</span>
+                <span>💖</span>
+              </div>
+
+              {/* More heartfelt & teasing message */}
+              <p className="text-2xl sm:text-3xl font-sub-script text-pink-900/90 mt-1 mb-2 max-w-md leading-relaxed font-semibold">
                 Someone has prepared a little surprise for you…
               </p>
+
+              <p className="text-sm sm:text-base font-serif text-pink-950/80 mb-6 max-w-md leading-relaxed">
+                Are you ready to see what&apos;s waiting behind the curtains? Get ready for a special countdown, a little chaos, and a whole lot of love for my best friend.
+              </p>
+
+              {/* 3 Days To Go Badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-pink-50 via-rose-50 to-pink-50 border border-pink-200 text-pink-700 text-xs font-semibold tracking-wider uppercase mb-6 font-sans">
+                <span>🎂 13 November 2026 • Just 3 Days To Go!</span>
+              </div>
 
               {/* Button: “OPEN YOUR SURPRISE 👀 ✨” */}
               <motion.button
                 onClick={handleOpenInitialCurtains}
-                whileHover={{ scale: 1.06, boxShadow: "0 10px 30px rgba(225,29,72,0.3)" }}
+                whileHover={{ scale: 1.05, boxShadow: "0 12px 35px rgba(225,29,72,0.35)" }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 sm:px-10 py-4 rounded-full font-bold text-base sm:text-lg tracking-wider text-white bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 shadow-xl shadow-pink-300/60 border border-white/80 flex items-center gap-2.5 transition-all group font-sans"
+                className="px-10 sm:px-12 py-4 sm:py-5 rounded-full font-bold text-base sm:text-xl tracking-wider text-white bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 shadow-xl shadow-pink-300/60 border border-white/80 flex items-center gap-3 transition-all group font-sans"
               >
                 <span>OPEN YOUR SURPRISE 👀</span>
-                <Sparkles className="w-5 h-5 text-yellow-200 group-hover:rotate-12 transition-transform" />
+                <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-200 group-hover:rotate-12 transition-transform" />
               </motion.button>
 
-              <span className="text-[11px] text-pink-500/70 tracking-wider uppercase mt-4 font-sans">
-                Tap to open the curtains ✨
+              <span className="text-xs text-pink-500/80 tracking-wider uppercase mt-4 font-sans font-medium">
+                Tap to open the curtains &amp; start the birthday song ✨
               </span>
             </div>
           </motion.div>
