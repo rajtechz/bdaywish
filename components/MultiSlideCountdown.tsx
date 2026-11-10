@@ -51,9 +51,9 @@ export default function MultiSlideCountdown() {
   const [transitionLetter, setTransitionLetter] = useState<string>("✨");
   const totalSlides = 6;
 
-  // Live countdown to 13 November 2026 (Asia/Kolkata timezone: +05:30)
+  // Live countdown to 14 November 2026 (Asia/Kolkata timezone: +05:30)
   const [timeLeft, setTimeLeft] = useState({
-    days: 3,
+    days: 4,
     hours: 0,
     minutes: 0,
     seconds: 0,
@@ -61,7 +61,7 @@ export default function MultiSlideCountdown() {
   });
 
   useEffect(() => {
-    const targetDate = new Date("2026-11-13T00:00:00+05:30").getTime();
+    const targetDate = new Date("2026-11-14T00:00:00+05:30").getTime();
 
     const updateTimer = () => {
       const now = new Date().getTime();
@@ -202,10 +202,10 @@ export default function MultiSlideCountdown() {
                 <span>💖</span>
               </div>
 
-              {/* 3 Days To Go Countdown Badge */}
+              {/* 14 November Countdown Badge */}
               <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/90 border border-pink-200 text-pink-700 text-xs sm:text-sm font-semibold tracking-wider uppercase mb-8 shadow-sm font-sans">
                 <Sparkles className="w-4 h-4 text-pink-500" />
-                <span>🎂 13 November 2026 • Just 3 Days To Go!</span>
+                <span>🎂 14 November 2026 • {timeLeft.days > 0 ? `Just ${timeLeft.days} Days To Go!` : "It's Today! 🎉"}</span>
                 <Heart className="w-4 h-4 text-rose-500 fill-rose-500" />
               </div>
 
@@ -316,12 +316,12 @@ export default function MultiSlideCountdown() {
                 MY BEST  . MY PARTNER IN CRIME. MY FAVOURITE IDIOT. 😂
               </div>
 
-              {/* Live Countdown to 13 November 2026 Asia/Kolkata */}
+              {/* Live Countdown to 14 November 2026 Asia/Kolkata */}
               <div className="w-full max-w-md mb-6">
                 <span className="text-xs uppercase tracking-widest text-pink-600 font-bold mb-2 block font-sans">
                   {timeLeft.isBirthdayToday
                     ? "IT’S OFFICIALLY YOUR BIRTHDAY TODAY! 🎉"
-                    : "JUST 3 DAYS TO GO! 🎂"}
+                    : `JUST ${timeLeft.days} DAYS TO GO! 🎂`}
                 </span>
 
                 <div className="grid grid-cols-4 gap-2.5 sm:gap-3.5">
@@ -389,7 +389,7 @@ export default function MultiSlideCountdown() {
               </div>
 
               <p className="text-[11px] text-pink-600/70 mt-6 tracking-wider uppercase font-sans">
-                13 November 2026 • Made with love for Allen ✨
+                14 November 2026 • Made with love for Allen ✨
               </p>
             </motion.div>
           )}

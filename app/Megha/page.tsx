@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import BirthdayExperience from "@/components/BirthdayExperience";
 
 export const metadata: Metadata = {
-  title: "Happy Birthday Allen! ✨🎂 | 3 Days To Go",
+  title: "Happy Birthday Allen! ✨🎂 | 14 November",
   description: "A cinematic birthday countdown surprise crafted especially for Allen.",
 };
 

@@ -106,7 +106,7 @@ export default function CardFlipper() {
               Thank you for understanding my weird humor, supporting my chaotic plans, and always having my back through thick and thin.
             </p>
             <p className="italic font-medium text-pink-800">
-              In just 3 days (13 November 2026), it&apos;s officially your time to shine! Get ready for an epic year ahead. ✨
+              On 14 November 2026, it&apos;s officially your time to shine! Get ready for an epic year ahead. ✨
             </p>
           </div>
 

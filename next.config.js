@@ -22,6 +22,38 @@ const nextConfig = {
         source: '/birthday',
         destination: '/Allen',
       },
+      {
+        source: '/A',
+        destination: '/Allen',
+      },
+      {
+        source: '/a',
+        destination: '/Allen',
+      },
+      {
+        source: '/L',
+        destination: '/Allen',
+      },
+      {
+        source: '/l',
+        destination: '/Allen',
+      },
+      {
+        source: '/E',
+        destination: '/Allen',
+      },
+      {
+        source: '/e',
+        destination: '/Allen',
+      },
+      {
+        source: '/N',
+        destination: '/Allen',
+      },
+      {
+        source: '/n',
+        destination: '/Allen',
+      },
     ];
   },
 };

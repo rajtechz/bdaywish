@@ -191,9 +191,9 @@ export default function CinematicCurtains({
                 Are you ready to see what&apos;s waiting behind the curtains? Get ready for a special countdown, a little chaos, and a whole lot of love for my best  .
               </p>
 
-              {/* 3 Days To Go Badge */}
+              {/* 14 November Countdown Badge */}
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-pink-50 via-rose-50 to-pink-50 border border-pink-200 text-pink-700 text-xs font-semibold tracking-wider uppercase mb-6 font-sans">
-                <span>🎂 13 November 2026 • Just 3 Days To Go!</span>
+                <span>🎂 14 November 2026 • Countdown To The Big Day!</span>
               </div>
 
               {/* Button: “OPEN YOUR SURPRISE 👀 ✨” */}
