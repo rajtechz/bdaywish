@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from "react";
 
 interface ParticleItem {
-  type: "petal" | "heart" | "flower" | "star" | "gold";
+  type: "petal" | "heart" | "flower" | "star";
   x: number;
   y: number;
   size: number;
@@ -35,93 +35,76 @@ export default function ParticleBackground() {
     };
     window.addEventListener("resize", handleResize);
 
-    const petalColors = ["#ffd1dc", "#fcaebb", "#f78198", "#ffccd5", "#fff0f3"];
-    const heartColors = ["#ee5778", "#f78198", "#ff4d6d", "#ffd1dc"];
-    const flowerColors = ["#fcaebb", "#ffd1dc", "#e9ddfc", "#ffffff"];
+    const petalColors = ["#f472b6", "#fb7185", "#fda4af", "#fecdd3", "#ffffff"];
+    const heartColors = ["#ec4899", "#f43f5e", "#fb7185", "#fda4af"];
+    const flowerColors = ["#f472b6", "#fbcfe8", "#fda4af", "#ffffff"];
 
     const particles: ParticleItem[] = [];
 
     // Rose petals
-    for (let i = 0; i < 24; i++) {
+    for (let i = 0; i < 22; i++) {
       particles.push({
         type: "petal",
         x: Math.random() * width,
         y: Math.random() * height,
         size: Math.random() * 10 + 8,
-        speedX: (Math.random() - 0.3) * 0.8,
-        speedY: Math.random() * 1.0 + 0.6,
+        speedX: (Math.random() - 0.3) * 0.7,
+        speedY: Math.random() * 0.9 + 0.5,
         rotation: Math.random() * 360,
         rotationSpeed: (Math.random() - 0.5) * 1.5,
-        opacity: Math.random() * 0.4 + 0.3,
+        opacity: Math.random() * 0.35 + 0.2,
         color: petalColors[Math.floor(Math.random() * petalColors.length)],
       });
     }
 
     // Floating hearts
-    for (let i = 0; i < 16; i++) {
+    for (let i = 0; i < 14; i++) {
       particles.push({
         type: "heart",
         x: Math.random() * width,
         y: Math.random() * height,
         size: Math.random() * 8 + 8,
-        speedX: (Math.random() - 0.5) * 0.5,
-        speedY: -Math.random() * 0.8 - 0.3, // gently floating upwards
-        rotation: (Math.random() - 0.5) * 30,
-        rotationSpeed: (Math.random() - 0.5) * 0.8,
-        opacity: Math.random() * 0.4 + 0.25,
+        speedX: (Math.random() - 0.5) * 0.4,
+        speedY: -Math.random() * 0.7 - 0.25,
+        rotation: (Math.random() - 0.5) * 25,
+        rotationSpeed: (Math.random() - 0.5) * 0.6,
+        opacity: Math.random() * 0.35 + 0.2,
         color: heartColors[Math.floor(Math.random() * heartColors.length)],
       });
     }
 
     // Floating flowers
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 10; i++) {
       particles.push({
         type: "flower",
         x: Math.random() * width,
         y: Math.random() * height,
-        size: Math.random() * 10 + 10,
-        speedX: (Math.random() - 0.5) * 0.7,
-        speedY: Math.random() * 0.8 + 0.4,
+        size: Math.random() * 9 + 8,
+        speedX: (Math.random() - 0.5) * 0.6,
+        speedY: Math.random() * 0.7 + 0.3,
         rotation: Math.random() * 360,
-        rotationSpeed: (Math.random() - 0.5) * 2,
-        opacity: Math.random() * 0.4 + 0.3,
+        rotationSpeed: (Math.random() - 0.5) * 1.8,
+        opacity: Math.random() * 0.35 + 0.2,
         color: flowerColors[Math.floor(Math.random() * flowerColors.length)],
       });
     }
 
-    // Twinkling stars
-    for (let i = 0; i < 50; i++) {
+    // Gentle stars
+    for (let i = 0; i < 30; i++) {
       particles.push({
         type: "star",
         x: Math.random() * width,
         y: Math.random() * height,
-        size: Math.random() * 1.5 + 0.6,
+        size: Math.random() * 2 + 0.8,
         speedX: 0,
         speedY: 0,
         rotation: 0,
         rotationSpeed: (Math.random() * 0.02 + 0.005) * (Math.random() > 0.5 ? 1 : -1),
-        opacity: Math.random(),
+        opacity: Math.random() * 0.5 + 0.2,
         color: "#ffffff",
       });
     }
 
-    // Golden dust
-    for (let i = 0; i < 35; i++) {
-      particles.push({
-        type: "gold",
-        x: Math.random() * width,
-        y: Math.random() * height,
-        size: Math.random() * 2 + 0.8,
-        speedX: (Math.random() - 0.5) * 0.6,
-        speedY: -Math.random() * 0.7 - 0.2,
-        rotation: 0,
-        rotationSpeed: 0,
-        opacity: Math.random() * 0.6 + 0.2,
-        color: "#e3cb73",
-      });
-    }
-
-    // Draw functions
     const drawPetal = (p: ParticleItem) => {
       ctx.save();
       ctx.translate(p.x, p.y);
@@ -132,8 +115,6 @@ export default function ParticleBackground() {
       ctx.bezierCurveTo(-p.size, 0, -p.size / 2, -p.size / 2, 0, 0);
       ctx.fillStyle = p.color;
       ctx.globalAlpha = p.opacity;
-      ctx.shadowColor = "#fcaebb";
-      ctx.shadowBlur = 4;
       ctx.fill();
       ctx.restore();
     };
@@ -149,8 +130,6 @@ export default function ParticleBackground() {
       ctx.bezierCurveTo(10, 0, 5, -5, 0, 0);
       ctx.fillStyle = p.color;
       ctx.globalAlpha = p.opacity;
-      ctx.shadowColor = "#ff4d6d";
-      ctx.shadowBlur = 6;
       ctx.fill();
       ctx.restore();
     };
@@ -168,10 +147,9 @@ export default function ParticleBackground() {
         ctx.fill();
         ctx.rotate((Math.PI * 2) / numPetals);
       }
-      // Center
       ctx.beginPath();
       ctx.arc(0, 0, p.size / 4, 0, Math.PI * 2);
-      ctx.fillStyle = "#ffd966";
+      ctx.fillStyle = "#fbbf24";
       ctx.fill();
       ctx.restore();
     };
@@ -182,32 +160,13 @@ export default function ParticleBackground() {
       particles.forEach((p) => {
         if (p.type === "star") {
           p.opacity += p.rotationSpeed;
-          if (p.opacity <= 0.1 || p.opacity >= 0.9) {
+          if (p.opacity <= 0.1 || p.opacity >= 0.7) {
             p.rotationSpeed = -p.rotationSpeed;
           }
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
           ctx.fillStyle = "#ffffff";
           ctx.globalAlpha = Math.max(0, Math.min(1, p.opacity));
-          ctx.shadowColor = "#e9ddfc";
-          ctx.shadowBlur = 5;
-          ctx.fill();
-        } else if (p.type === "gold") {
-          p.x += p.speedX;
-          p.y += p.speedY;
-          if (p.y < 0) {
-            p.y = height + 10;
-            p.x = Math.random() * width;
-          }
-          if (p.x < 0) p.x = width;
-          if (p.x > width) p.x = 0;
-
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fillStyle = "#e3cb73";
-          ctx.globalAlpha = p.opacity;
-          ctx.shadowColor = "#d9b345";
-          ctx.shadowBlur = 6;
           ctx.fill();
         } else if (p.type === "petal") {
           p.y += p.speedY;
@@ -229,7 +188,7 @@ export default function ParticleBackground() {
           drawHeart(p);
         } else if (p.type === "flower") {
           p.y += p.speedY;
-          p.x += p.speedX + Math.cos(p.y * 0.015) * 0.5;
+          p.x += p.speedX + Math.cos(p.y * 0.015) * 0.4;
           p.rotation += p.rotationSpeed;
           if (p.y > height + 25) {
             p.y = -25;
@@ -254,7 +213,7 @@ export default function ParticleBackground() {
     <canvas
       ref={canvasRef}
       className="pointer-events-none fixed inset-0 z-0 h-full w-full"
-      style={{ opacity: 0.9 }}
+      style={{ opacity: 0.75 }}
     />
   );
 }

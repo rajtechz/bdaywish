@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const viewport: Viewport = {
-  themeColor: "#07030b",
+  themeColor: "#ffd8e4",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -10,26 +10,26 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://megha-birthday-surprise.vercel.app"),
-  title: "A Special Surprise For You, Megha ✨🎁",
-  description: "Someone made something magical just for you. Tap to open your surprise...",
+  title: "A Special Surprise For You... 👀✨",
+  description: "I have something for you... Click to open!",
   openGraph: {
-    title: "A Special Surprise For You, Megha ✨🎁",
-    description: "Someone made something magical just for you. Tap to open your surprise...",
+    title: "A Special Surprise For You... 👀✨",
+    description: "I have something for you... Click to open!",
     type: "website",
-    siteName: "A Magical Surprise for Megha",
+    siteName: "Birthday Surprise",
     images: [
       {
         url: "/images/og-preview.png",
         width: 1200,
         height: 630,
-        alt: "A Magical Surprise Awaits You",
+        alt: "A Special Surprise",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "A Special Surprise For You, Megha ✨🎁",
-    description: "Someone made something magical just for you. Tap to open your surprise...",
+    title: "A Special Surprise For You... 👀✨",
+    description: "I have something for you... Click to open!",
     images: ["/images/og-preview.png"],
   },
   icons: {
@@ -43,13 +43,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark scroll-smooth" style={{ backgroundColor: "#0d031a" }}>
+    <html lang="en" className="scroll-smooth" style={{ backgroundColor: "#ffd8e4" }}>
       <body
-        className="bg-midnight-950 text-blush-50 antialiased selection:bg-blush-500 selection:text-white min-h-screen"
+        className="text-[#4a0e2e] antialiased selection:bg-pink-400 selection:text-white min-h-screen"
         style={{
-          backgroundColor: "#0d031a",
-          backgroundImage: "radial-gradient(circle at 50% 10%, #360b45 0%, #1e052d 35%, #0d031a 100%)",
-          color: "#fff5f7",
+          backgroundColor: "#ffd8e4",
+          backgroundImage: "radial-gradient(circle at 50% 20%, #ffeaf1 0%, #ffd4e2 50%, #fbcfe8 100%)",
+          color: "#4a0e2e",
           margin: 0,
         }}
       >

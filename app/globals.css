@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Great+Vibes&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,8 +6,9 @@
 
 :root {
   --font-playfair: 'Playfair Display', Georgia, serif;
-  --font-outfit: 'Outfit', system-ui, -apple-system, sans-serif;
-  --font-great-vibes: 'Great Vibes', cursive;
+  --font-outfit: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-script: 'Great Vibes', 'Dancing Script', cursive;
+  --font-handwriting: 'Dancing Script', cursive;
 }
 
 * {
@@ -18,81 +19,82 @@
 html {
   scroll-behavior: smooth;
   font-family: var(--font-outfit);
-  background-color: #0d031a !important;
-  color: #fff5f7;
+  background-color: #ffd8e4 !important;
+  color: #4a0e2e;
 }
 
 body {
-  background-color: #0d031a !important;
-  background-image: radial-gradient(circle at 50% 10%, #360b45 0%, #1e052d 35%, #0d031a 100%) !important;
-  color: #fff5f7 !important;
+  background-color: #ffd8e4 !important;
+  background-image: radial-gradient(circle at 50% 20%, #ffeaf1 0%, #ffd4e2 50%, #fbcfe8 100%) !important;
+  color: #4a0e2e !important;
   overflow-x: hidden;
   min-height: 100vh;
   margin: 0;
   padding: 0;
 }
 
-/* Glassmorphism Cards */
-.glass-card {
-  background: rgba(255, 255, 255, 0.05);
+/* Glassmorphism Aesthetic Cards */
+.glass-pill {
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 209, 220, 0.18);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 20px rgba(238, 87, 120, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 30px rgba(236, 72, 153, 0.12);
 }
 
-.glass-card-gold {
-  background: rgba(247, 241, 212, 0.04);
+.glass-player {
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(217, 179, 69, 0.3);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(217, 179, 69, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 15px 40px rgba(219, 39, 119, 0.15), 0 2px 10px rgba(0, 0, 0, 0.03);
 }
 
-/* Gold Gradient Typography */
+.glass-card-pastel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 20px 50px rgba(225, 29, 72, 0.1), 0 0 30px rgba(244, 114, 182, 0.15);
+}
+
+/* Vibrant Pink & Magenta Calligraphy Gradient */
+.text-magenta-gradient {
+  background: linear-gradient(135deg, #e11d48 0%, #db2777 40%, #c026d3 70%, #9333ea 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(219, 39, 119, 0.25));
+}
+
 .text-gold-gradient {
-  background: linear-gradient(135deg, #fff2cc 0%, #ffd966 30%, #e3cb73 50%, #d9b345 75%, #ffffff 100%);
+  background: linear-gradient(135deg, #b45309 0%, #d97706 40%, #f59e0b 80%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 35px rgba(217, 179, 69, 0.4);
 }
 
-.text-pink-gradient {
-  background: linear-gradient(135deg, #ffffff 0%, #ffd1dc 40%, #f78198 80%, #ee5778 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 30px rgba(238, 87, 120, 0.35);
+/* 3D Flip Card Styles */
+.perspective-1000 {
+  perspective: 1000px;
 }
-
-.text-lavender-gradient {
-  background: linear-gradient(135deg, #ffffff 0%, #e9ddfc 45%, #be98f5 90%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.rotate-y-180 {
+  transform: rotateY(180deg);
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0c0714;
+  background: #ffd8e4;
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #d9b345, #ee5778);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #ffd1dc;
-}
-
-/* Subtle Shimmer Animation */
-@keyframes goldShimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-.gold-shimmer {
-  background: linear-gradient(90deg, rgba(217,179,69,0.1) 0%, rgba(255,255,255,0.4) 50%, rgba(217,179,69,0.1) 100%);
-  background-size: 200% 100%;
-  animation: goldShimmer 3.5s infinite linear;
+  background: #f472b6;
+  border-radius: 999px;
 }
