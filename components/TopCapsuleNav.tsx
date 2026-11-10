@@ -24,8 +24,8 @@ export default function TopCapsuleNav({
   ];
 
   return (
-    <div className="fixed top-4 left-1/2 -translate-x-1/2 z-40 select-none">
-      <div className="glass-pill px-5 py-2 sm:px-7 sm:py-2.5 rounded-full flex items-center gap-3 sm:gap-4 shadow-lg border border-white/90 bg-white/80 backdrop-blur-xl">
+    <div className="fixed top-3.5 left-1/2 -translate-x-1/2 z-40 select-none max-w-[calc(100vw-90px)] sm:max-w-none">
+      <div className="glass-pill px-3.5 py-1.5 sm:px-7 sm:py-2.5 rounded-full flex items-center gap-2 sm:gap-4 shadow-lg border border-white/90 bg-white/85 backdrop-blur-xl">
         {/* Left Sparkle (matching screenshot, clickable to return Home) */}
         <button
           onClick={() => onSelectSlide(0)}

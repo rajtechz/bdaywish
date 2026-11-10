@@ -100,7 +100,7 @@ export default function CardFlipper() {
           {/* Letter Body */}
           <div className="space-y-3 font-serif text-pink-950/85 text-xs sm:text-sm leading-relaxed my-auto pt-2">
             <p>
-              First of all, you are not just a   — you are <span className="font-bold text-pink-700">my absolute best  </span>, my unpaid therapist, and my favourite human to laugh with until our stomachs hurt.
+              First of all, you are not just a Best — you are <span className="font-bold text-pink-700">my absolute best Best</span>, my unpaid therapist, and my favourite human to laugh with until our stomachs hurt.
             </p>
             <p>
               Thank you for understanding my weird humor, supporting my chaotic plans, and always having my back through thick and thin.

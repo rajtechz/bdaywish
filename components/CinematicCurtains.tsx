@@ -188,7 +188,7 @@ export default function CinematicCurtains({
               </p>
 
               <p className="text-sm sm:text-base font-serif text-pink-950/80 mb-6 max-w-md leading-relaxed">
-                Are you ready to see what&apos;s waiting behind the curtains? Get ready for a special countdown, a little chaos, and a whole lot of love for my best  .
+                Are you ready to see what&apos;s waiting behind the curtains? Get ready for a special countdown, a little chaos, and a whole lot of love for my best Best.
               </p>
 
               {/* 14 November Countdown Badge */}

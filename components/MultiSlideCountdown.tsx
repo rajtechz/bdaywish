@@ -182,7 +182,7 @@ export default function MultiSlideCountdown() {
               {/* Headline Line 3 with Purple Heart (Exact from Image 1 & Image 7) */}
               <div className="flex items-center justify-center gap-2 mt-1 mb-2">
                 <span className="text-5xl sm:text-7xl font-brush font-bold text-calligraphy-gradient">
-                  ..
+                  Best..
                 </span>
                 <span className="text-4xl sm:text-6xl text-purple-600 animate-pulse">
                   💜
@@ -191,7 +191,7 @@ export default function MultiSlideCountdown() {
 
               {/* Subtitle (Exact Font & Size from Screenshot) */}
               <p className="text-xl sm:text-2xl font-sub-script text-pink-800/90 font-medium mb-3">
-                My dearest  , today is all about celebrating you
+                My dearest Best, today is all about celebrating you
               </p>
 
               {/* Emojis matching reference screenshot */}
@@ -291,7 +291,7 @@ export default function MultiSlideCountdown() {
               {/* Headline Line 3 with Purple Heart (Exact from Screenshot) */}
               <div className="flex items-center justify-center gap-2 mt-1 mb-2">
                 <span className="text-5xl sm:text-7xl font-brush font-bold text-calligraphy-gradient">
-                  ..
+                  Best..
                 </span>
                 <span className="text-4xl sm:text-6xl text-purple-600 animate-pulse">
                   💜
@@ -300,7 +300,7 @@ export default function MultiSlideCountdown() {
 
               {/* Subtitle (Exact Font & Size from Screenshot) */}
               <p className="text-xl sm:text-2xl font-sub-script text-pink-800/90 font-medium mb-3">
-                My dearest  , today is all about celebrating you
+                My dearest Best, today is all about celebrating you
               </p>
 
               {/* Emojis matching reference screenshot */}
@@ -311,9 +311,9 @@ export default function MultiSlideCountdown() {
                 <span>💖</span>
               </div>
 
-              {/* Decorative Best-  Badge */}
+              {/* Decorative Best-Best Badge */}
               <div className="inline-block px-4 py-1.5 rounded-full bg-pink-100/90 border border-pink-200/80 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-pink-700 mb-6 font-sans">
-                MY BEST  . MY PARTNER IN CRIME. MY FAVOURITE IDIOT. 😂
+                MY BEST Best. MY PARTNER IN CRIME. MY FAVOURITE IDIOT. 😂
               </div>
 
               {/* Live Countdown to 14 November 2026 Asia/Kolkata */}
@@ -403,8 +403,8 @@ export default function MultiSlideCountdown() {
             key={idx}
             onClick={() => switchSlideWithCurtains(idx)}
             className={`transition-all duration-300 rounded-full ${currentSlide === idx
-                ? "w-8 h-2.5 bg-gradient-to-r from-pink-500 to-rose-400"
-                : "w-2.5 h-2.5 bg-pink-300/60 hover:bg-pink-400"
+              ? "w-8 h-2.5 bg-gradient-to-r from-pink-500 to-rose-400"
+              : "w-2.5 h-2.5 bg-pink-300/60 hover:bg-pink-400"
               }`}
             title={`Slide ${idx}`}
           />
