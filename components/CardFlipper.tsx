@@ -20,9 +20,8 @@ export default function CardFlipper() {
     <div className="w-full max-w-lg mx-auto py-4 select-none perspective-1000">
       <div
         onClick={handleFlip}
-        className={`relative w-full min-h-[380px] sm:min-h-[420px] rounded-3xl transition-transform duration-700 transform-style-preserve-3d cursor-pointer ${
-          isFlipped ? "rotate-y-180" : ""
-        }`}
+        className={`relative w-full min-h-[380px] sm:min-h-[420px] rounded-3xl transition-transform duration-700 transform-style-preserve-3d cursor-pointer ${isFlipped ? "rotate-y-180" : ""
+          }`}
       >
         {/* FRONT SIDE (Envelope / Sealed Letter) */}
         <div className="absolute inset-0 w-full h-full rounded-3xl p-6 sm:p-8 glass-card-pastel border-2 border-pink-200/80 shadow-xl flex flex-col items-center justify-between backface-hidden bg-gradient-to-br from-white/90 via-pink-50/80 to-rose-100/70">
@@ -83,7 +82,7 @@ export default function CardFlipper() {
                   Dear Allen,
                 </h4>
                 <span className="text-[10px] text-pink-500/80 tracking-wider uppercase block font-sans">
-                  My Best Friend. My Favourite Idiot. 😂
+                  My Best  . My Favourite Idiot. 😂
                 </span>
               </div>
             </div>
@@ -101,7 +100,7 @@ export default function CardFlipper() {
           {/* Letter Body */}
           <div className="space-y-3 font-serif text-pink-950/85 text-xs sm:text-sm leading-relaxed my-auto pt-2">
             <p>
-              First of all, you are not just a friend — you are <span className="font-bold text-pink-700">my absolute best friend</span>, my unpaid therapist, and my favourite human to laugh with until our stomachs hurt.
+              First of all, you are not just a   — you are <span className="font-bold text-pink-700">my absolute best  </span>, my unpaid therapist, and my favourite human to laugh with until our stomachs hurt.
             </p>
             <p>
               Thank you for understanding my weird humor, supporting my chaotic plans, and always having my back through thick and thin.
@@ -115,7 +114,7 @@ export default function CardFlipper() {
           <div className="border-t border-pink-200/60 pt-3 flex items-center justify-between">
             <span className="text-lg sm:text-xl font-sub-script text-pink-700">Forever &amp; Always,</span>
             <span className="text-2xl sm:text-3xl font-brush font-bold text-calligraphy-gradient">
-              Your Best Friend ❤️
+              Your Best   ❤️
             </span>
           </div>
         </div>

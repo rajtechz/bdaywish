@@ -49,9 +49,8 @@ export default function CinematicCurtains({
 
   return (
     <div
-      className={`fixed inset-0 z-50 select-none overflow-hidden transition-all duration-300 ${
-        hasStarted && !isTransitioning ? "pointer-events-none" : "pointer-events-auto"
-      }`}
+      className={`fixed inset-0 z-50 select-none overflow-hidden transition-all duration-300 ${hasStarted && !isTransitioning ? "pointer-events-none" : "pointer-events-auto"
+        }`}
     >
       {/* Golden Light Burst Beam on split */}
       <AnimatePresence>
@@ -189,7 +188,7 @@ export default function CinematicCurtains({
               </p>
 
               <p className="text-sm sm:text-base font-serif text-pink-950/80 mb-6 max-w-md leading-relaxed">
-                Are you ready to see what&apos;s waiting behind the curtains? Get ready for a special countdown, a little chaos, and a whole lot of love for my best friend.
+                Are you ready to see what&apos;s waiting behind the curtains? Get ready for a special countdown, a little chaos, and a whole lot of love for my best  .
               </p>
 
               {/* 3 Days To Go Badge */}
